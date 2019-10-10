@@ -1,39 +1,76 @@
 \documentclass[12pt,a4paper,twocolumn]{article}
+\usepackage{ccicons}
+\usepackage{hyperref}
 
 \begin{document}
-    \twocolumn[{
-        \begin{centering}
-            \huge{Title}
-            \par
-            \vspace{2ex}
+\twocolumn[{
+		\begin{centering}
+			\huge{tbd. Design Sciences \& Empirical Software Engineering / Reactive Programming}
+			\par
+			\vspace{2ex}
 
-            \large{
-                Manuel Alabor\\
-                Supervised by SUPERVISOR\\
-                University of Applied Sciences Rapperswil
-            }
-            \par
-            \vspace{2ex}
+			\large{
+				Manuel Alabor\\
+				Supervised by Prof. Dr. Olaf Zimmermann\\
+				University of Applied Sciences Rapperswil
+			}
+			\par
+			\vspace{2ex}
 
-            \large{\today}
-            \par
-            \vspace{2ex}
+			\large{\today}
+			\par
+			\vspace{2ex}
 
-            \small{
-                \textbf{Abstract}---\input{./abstract.tex}
-            }
-            \par
-            \vspace{4ex}
-        \end{centering}
-    }]
+			\small{
+				\textbf{Abstract}---\input{./abstract.tex}
+			}
+			\par
+			\vspace{2ex}
 
-    \section{Intro}
-    Some Content \cite{Author:Year:Abbr:1111111}
-    Test
+			\small{
+				\textbf{Keywords}: tbd.
+			}
+			\par
+			\vspace{4ex}
+		\end{centering}
+	}]
 
-    \section{Intro}
-    Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+	\section{Introduction}
+	Software engineering provides patterns to solve recurring problems with proved and tested solutions. However, it is rare that a given problem must always be solved with exactly \emph{one} solution. Salvaneschi et al. \cite{7827078} examine reactive programming \emph{(RP)} as an alternative to the observer pattern \cite{gamma1995design} and its impact on source code comprehensibility.
 
-    \bibliographystyle{splncs04}
-    \bibliography{index}
+	\dots{more intro}
+
+	\subsection{Reactive programming}
+	What is it? Why?
+
+	\subsection{Observer pattern}
+	What is it? Why?
+
+	\subsection{Design sciences \& empirical software engineering}
+	What are those? Why in this paper?
+
+	\section{Review}
+	I will assess the paper by Salvaneschi et al. \cite{7827078} in regards of the following aspects:
+	\begin{itemize}
+		\item Applied scientific methods (foundation by Kapferer \cite{kapferer:2019:empirical} and others tbd.)
+		\item Study setup
+		\item Challenge with FAIR Principles \cite{2019arXiv190805986H} \cite{wilkinson:2016}
+	\end{itemize}
+
+	\section{Results}
+	Is the conclusion of Salvaneschi et al. \cite{7827078} reasonable and well argued?
+
+	\section{Discussion}
+	Given the results, I will put RP in context with current trends in software engineering, in particular in its subdiscipline frontend engineering.
+	Ideas: RxJS, Elm, ReactJS \dots tbd.
+
+	\section{Conclusion}
+	Summarize findings, give proposal for future work on topic.
+
+	\bibliographystyle{splncs04}
+	\bibliography{index}
+
+	\section*{License}
+	\ccby\thinspace\thinspace This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License}.
+
 \end{document}
