@@ -1,9 +1,7 @@
 \documentclass[11pt,a4paper,twocolumn]{article}
 \usepackage{ccicons}
 \usepackage{hyperref}
-
-\usepackage{listings}
-\lstset{numbers=left,frame=single}
+\usepackage{minted}
 
 \begin{document}
 \twocolumn[{
@@ -75,17 +73,10 @@
 
 	The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#interface-eventtarget}} of the document object model \emph{(DOM)} API exposed to a browsers JavaScript runtime (among others) is an evolution of the observer pattern: An event handler (the \emph{observer}) can register to events emitted by an event target (the \emph{subject}). All registered event handlers will be called one after another once the event target disaptches (\emph{notifies}) an event. The handler might gain access to the event targets state via the provided event object.
 
-	\begin{lstlisting}
-window.addEventListener(
-  'click',
-  e => {
-    console.log(
-      'click',
-      e.target
-    );
-  }
-);
-	\end{lstlisting}
+
+	\begin{minted}{JavaScript}
+window.addEventListener('click', e => console.log('click', e.target));
+	\end{minted}
 
 	\section{Artifact Review}
 	Will not do: Review on statistic

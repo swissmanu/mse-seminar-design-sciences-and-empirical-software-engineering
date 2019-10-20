@@ -11,7 +11,8 @@ jobs:
         uses: xu-cheng/latex-action@master
         with:
           root_file: index.tex
-          extra_packages: ccicons
+          args: -shell-escape
+          extra_packages: ccicons minted
       - uses: actions/upload-artifact@master
         with:
           name: PDF
