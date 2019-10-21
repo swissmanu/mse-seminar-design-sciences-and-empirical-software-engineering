@@ -8,11 +8,10 @@ jobs:
     steps:
       - uses: actions/checkout@master
       - name: Build template
-        uses: xu-cheng/latex-action@master
+        uses: swissmanu/latex-action@master
         with:
           root_file: index.tex
-          args: -shell-escape
-          extra_packages: ccicons minted
+          args: -pdf -file-line-error -interaction=nonstopmode -shell-escape # allows minted to do its work
       - uses: actions/upload-artifact@master
         with:
           name: PDF

@@ -3,6 +3,8 @@
 \usepackage{hyperref}
 \usepackage{minted}
 
+\setminted{autogobble=true, tabsize=2, linenos=true}
+
 \begin{document}
 \twocolumn[{
 		\begin{centering}
@@ -41,7 +43,7 @@
 
 	Solving unique problems through the application of software engineering principles does not automatically lead to unique solutions in general. In fact, the emergence of recurring design patterns can be observed. Salvaneschi et al. \cite{7827078} challenge the observer pattern \cite{gamma1995design} and its impact on source code comprehensibility in comparison to the usage of reactive programming \emph{(RP)}.
 
-	We will examine the artifact \cite{balestra:2019:designscience:articactandcontext} \textbf{A1} \emph{On the Positive Effect of Reactive Programming on Software Comprehension: An Empirical Study} by Salvaneschi et al. \cite{7827078} and answer two sets of questions within this paper. \textbf{Q1} considers design sciences and empirical software engineering methods, approaches and concepts as knowledge context \cite{balestra:2019:designscience:articactandcontext}:
+	We will examine the artifact \cite{balestra:2019:designscience:articactandcontext} \textbf{A1} \emph{On the Positive Effect of Reactive Programming on Software Comprehension: An Empirical Study} by Salvaneschi et al. \cite{7827078} and answer two sets of questions within this paper. Set \textbf{Q1} considers design sciences and empirical software engineering methods, approaches and concepts as first knowledge context \cite{balestra:2019:designscience:articactandcontext}:
 
 	\begin{itemize}
 		\item \textbf{Q1.1}: Which empirical research methods, approaches and concepts were applied?
@@ -49,7 +51,7 @@
 		\item \textbf{Q1.3}: Does the paper meet FAIR principles \cite{2019arXiv190805986H} \cite{wilkinson:2016}?
 	\end{itemize}
 
-	As \textbf{A1} compares RP with the observer pattern \cite{gamma1995design}, an equivalent to RP in object oriented programming \emph{(OOP)}, \textbf{Q2} states questions under the software engineering context:
+	As \textbf{A1} further compares RP with the observer pattern \cite{gamma1995design}, an equivalent based on object oriented programming \emph{(OOP)} paradigms, question set \textbf{Q2} obtains software engineering as the second knowledge context \cite{balestra:2019:designscience:articactandcontext}:
 
 	\begin{itemize}
 		\item \textbf{Q2.1}: How does the paper define RP and OOP?
@@ -71,12 +73,20 @@
 
 	The observer pattern \cite{gamma1995design} defines an interface where \emph{observers} can subscribe to state change notifications of a \emph{subject}. Once notified, an \emph{observer} might query the \emph{subject} for its latest state and act accordingly to its implementation.
 
-	The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#interface-eventtarget}} of the document object model \emph{(DOM)} API exposed to a browsers JavaScript runtime (among others) is an evolution of the observer pattern: An event handler (the \emph{observer}) can register to events emitted by an event target (the \emph{subject}). All registered event handlers will be called one after another once the event target disaptches (\emph{notifies}) an event. The handler might gain access to the event targets state via the provided event object.
+	The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#interface-eventtarget}} of the document object model \emph{(DOM)} API exposed to a browsers JavaScript runtime (among others) is an evolution of the observer pattern. Listing \ref{lst:eventtarget} shows how an event handler (the \emph{observer}) can register to events emitted by an event target (the \emph{subject}). All registered event handlers will be called one after another once the event target disaptches (\emph{notifies}) an event. The handler might gain access to the event targets state via the provided event object.
 
 
-	\begin{minted}{JavaScript}
-window.addEventListener('click', e => console.log('click', e.target));
-	\end{minted}
+	\begin{listing}[H]
+		\begin{minted}{JavaScript}
+			window.addEventListener(
+				'click',
+				e => console.log('click', e.target)
+			);
+		\end{minted}
+		\caption{Register a click handler to an \emph{EventTarget}}
+		\label{lst:eventtarget}
+	\end{listing}
+
 
 	\section{Artifact Review}
 	Will not do: Review on statistic
