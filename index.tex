@@ -3,9 +3,10 @@
 \usepackage{hyperref}
 \usepackage{minted}
 
+\setminted{autogobble=true, tabsize=2, linenos=true, frame=single, breaklines=true}
+
 \newcommand{\version}{v0.1}
 
-\setminted{autogobble=true, tabsize=2, linenos=true}
 
 \begin{document}
 \begin{centering}
@@ -82,17 +83,12 @@ The observer pattern \cite{gamma1995design} defines an interface where \emph{obs
 The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#interface-eventtarget}} of the document object model \emph{(DOM)} API exposed to a browsers JavaScript runtime (among others) is an evolution of the observer pattern.
 
 \begin{listing}[H]
-	\begin{minted}{JavaScript}
-		window.addEventListener(
-		'click',
-		e => console.log('click', e.target)
-		);
-	\end{minted}
-	\caption{Register a click handler to an \emph{EventTarget}}
+	\mint{JavaScript}{window.addEventListener('click', e => console.log('click', e.target));}
+	\caption{Add a click handler to the \mintinline{JavaScript}{window} event target (JavaScript)}
 	\label{lst:eventtarget}
 \end{listing}
 
-Listing \ref{lst:eventtarget} shows how an event handler (the \emph{observer}) can register to events emitted by an event target (the \emph{subject}). All registered event handlers will be called one after another once the event target dispatches (\emph{notifies}) an event. The handler might gain access to the event targets state via the provided event object.
+Listing \ref{lst:eventtarget} shows how an event handler (the \emph{observer}) can register for events emitted by an event target (the \emph{subject}). All registered event handlers will be called one after another once the event target dispatches (\emph{notifies}) an event. The handler might gain access to the event targets state via the provided event object.
 
 
 \section{Artifact Review}
