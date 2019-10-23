@@ -62,7 +62,10 @@
 
 	In the following we will introduce and define important terms. Section 2 and 3 will examine \textbf{A1} and answer \textbf{Q1} and \textbf{Q2.1}. \textbf{Q2.2} through \textbf{Q2.4} will be tackled in section 4 where we discuss previous findings.
 
-	\subsection{Design sciences and empirical software engineering}
+	\subsection{Design sciences}
+	Design science applies scientific research methods on a research projects themselves. It defines a methodical framework \cite{balestra:2019:designscience:articactandcontext} to describe, plan and execute a research project.
+
+	\subsection{Empirical software engineering}
 	What are those? Why in this paper?
 
 	\subsection{Reactive programming}
@@ -74,7 +77,6 @@
 	The observer pattern \cite{gamma1995design} defines an interface where \emph{observers} can subscribe to state change notifications of a \emph{subject}. Once notified, an \emph{observer} might query the \emph{subject} for its latest state and act accordingly to its implementation.
 
 	The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#interface-eventtarget}} of the document object model \emph{(DOM)} API exposed to a browsers JavaScript runtime (among others) is an evolution of the observer pattern. Listing \ref{lst:eventtarget} shows how an event handler (the \emph{observer}) can register to events emitted by an event target (the \emph{subject}). All registered event handlers will be called one after another once the event target disaptches (\emph{notifies}) an event. The handler might gain access to the event targets state via the provided event object.
-
 
 	\begin{listing}[H]
 		\begin{minted}{JavaScript}
