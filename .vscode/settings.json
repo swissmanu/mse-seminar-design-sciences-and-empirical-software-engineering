@@ -68,5 +68,6 @@
             ],
             "env": {}
         }
-    ]
+    ],
+    "dimmer.enabled": true
 }
