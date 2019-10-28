@@ -74,23 +74,27 @@ Hence software engineering problems lack analytical and scientific formalism, em
 Roel J. Wieranga derives guidelines specifically for software engineering research projects from design science in his book \emph{Design Science Methodology for Information Systems and Software Engineering} \cite{wieringa}. As Balestra \cite{balestra:2019:designscience:articactandcontext} summarizes in his paper about design science and their application in software projects, Wieranga \cite{wieringa} defines an iterative process consisting of a \emph{design} and \emph{investigation} step. During \emph{design}, an \emph{artifact} is designed to satisfy the goals of one or more \emph{stakeholders} under consideration of a specific \emph{knowledge context}. The artifact and context is then put under \emph{investigation} to answer knowledge questions. These answers lead to a feedback loop where gained insights get fed into another design iteration. This process might be repeated until the stakeholder goals are met at a satisfying level.
 
 \subsection{FAIR Research Principles}
-\emph{FAIR} is an acronym for Findability, Accessibility, Interoperability and Reusability. It was first introduced by Mark. D. Wilkinson et al. in March 2016 \cite{wilkinson:2016} and describes guidelines to foster digital research objects over the long-term. The guidelines focus on the value maximization for the science community by asking for easy access to research results. The four cornerstones can be summarized as followed:
+\emph{FAIR} is an abbreviation for Findability, Accessibility, Interoperability and Reusability. It was first introduced by Mark. D. Wilkinson et al. in March 2016 \cite{wilkinson:2016} and describes guidelines to foster digital research objects over the long-term. The guidelines want to maximization the value of research results for the science community as a whole. Following a summary of the four cornerstones:
 
 \begin{itemize}
 	\item \textbf{Findability}: Objects are annotated with well-defined meta information. This information is usable for both humans and machines. An example is a globally unique, persistent identifier for a publicized paper or keywords highlighting the problem domains of a research result. There is a catalogue which provides searchable access to this meta information.
-	\item \textbf{Accessibility}: Digital objects can be retrieved through a standardized communication protocol, openly available and providing ways to authenticate and authorize users (again both humans and machines) if needed. Meta information is always available, even if the actual object is not anymore.
-	\item \textbf{Interoperability}: Meta information and the object it describes use formats and vocabularies following FAIR principles. This could be done by using accepted, domain specific terminologies or providing a data set collected through an experiment in XML format, alongside with an schema \footnote{\url{https://www.w3.org/TR/xmlschema-1/}} describing its structure. If an object references other research results, these references should be part of the meta information too.
-	\item \textbf{Reusability}: To make an object as reusable as possible, it should always use a clear and concise data usage license. \textbf{TODO}
+	\item \textbf{Accessibility}: Digital objects can be retrieved using an open, standardized communication protocol. It provides ways to authenticate and/or authorize users (again both humans and machines) if necessary. Meta information is always available, even if the actual object is not anymore.
+	\item \textbf{Interoperability}: Meta information and the object it describes use formats and vocabularies following FAIR principles. For example an accepted, domain specific terminology is used or a data set collected during an experiment is available in XML format, alongside with a schema \footnote{\url{https://www.w3.org/TR/xmlschema-1/}} describing its structure. Referenced research results are part of the meta information.
+	\item \textbf{Reusability}: Research results meet the respective science communities standards. Further results are released under a concise and accessible data usage license to simplify their reuse in follow-up research projects.
 \end{itemize}
 
-Hasselbring et al. \cite{2019arXiv190805986H} transfer these commonly applicable guidelines to the field of computer science research and formulate recommendations how research in this field could benefit from FAIR in specific.
-
-\textbf{TODO}
+Hasselbring et al. \cite{2019arXiv190805986H} transfer the general applicable guidelines to the field of computer science research and formulate domain specific recommendations. Their key point is the request for treating software artifacts produced during a research project with the same level of care as the project report itself. Platforms like Zenodo\footnote{\url{https://zenodo.org}} in conjunction with GitHub\footnote{\url{https://github.com}} allow to reference, archive and later retrieve associated software artifacts for example.
 
 \subsection{Reactive Programming}
-Reactive programming is a declarative programming paradigm. Declarative code describes \emph{what} rather than \emph{how} something should be done.
+RP is a declarative programming paradigm. In contrary to imperative programming, declarative code describes \emph{what} should be achieved rather than \emph{how} the process leading to that result looks like. With RP, we describe values, their transformation over time and how they depend on each other \cite{8354906}. A runtime system propagates changed values to their relevant dependencies, execute declared computations and ensures always a consistent state.
 
-\textbf{TODO}
+\begin{listing}[H]
+	\begin{minted}{JavaScript}
+		// TODO Example RP
+	\end{minted}
+	\caption{}
+	\label{lst:basic-rp-with-rxjs}
+\end{listing}
 
 \subsection{Observer Pattern}
 When dividing a large component into smaller sub components, we usually want these components to be as isolated as necessary so they become more reusable, hence target for loose coupling between them. Still, the new components need a way to interact with each other.
