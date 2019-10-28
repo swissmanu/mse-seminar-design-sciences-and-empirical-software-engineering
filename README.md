@@ -1,1 +1,3 @@
-# 🎓 MSE Seminar Paper: Design Sciences and Empirical Software Engineering
+# 🎓 Master Seminar: Design Sciences and Empirical Software Engineering
+
+> First research paper written for my master studies.
