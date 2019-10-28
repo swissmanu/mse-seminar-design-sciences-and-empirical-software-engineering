@@ -105,7 +105,7 @@ The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#int
 	\label{lst:eventtarget}
 \end{listing}
 
-Listing \ref{lst:eventtarget} shows how an event handler (the \emph{observer}) can register for events emitted by an event target (the \emph{subject}). All registered event handlers will be called one after another once the event target dispatches (\emph{notifies}) an event. The handler might gain access to the event targets state via the provided event object.
+The code in listing \ref{lst:eventtarget} shows how an event handler (the \emph{observer}) can register for events emitted by an event target (the \emph{subject}). Registered event handlers will be called one after another once the event target dispatches (\emph{notifies}) an event. The handler shown gains access to the \emph{subjects} state through the \mintinline{JavaScript}{target} property of the function parameter \mintinline{JavaScript}{e}.
 
 
 \section{Artifact Review}
