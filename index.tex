@@ -55,7 +55,7 @@ We will examine the paper \emph{On the Positive Effect of Reactive Programming o
 	\item \textbf{Q1.3}: Does the paper meet FAIR principles \cite{2019arXiv190805986H} \cite{wilkinson:2016}?
 \end{itemize}
 
-As the paper further compares RP with the observer pattern \cite{gamma1995design}, an equivalent based on object oriented programming \emph{(OOP)} paradigms, question set \textbf{Q2} reviews software engineering specific aspects of that comparison:
+As the paper further compares RP with the observer design pattern \cite{gamma1995design}, an equivalent based on object oriented programming \emph{(OOP)} paradigms, question set \textbf{Q2} reviews software engineering specific aspects of that comparison:
 
 \begin{itemize}
 	\item \textbf{Q2.1}: How does the paper define RP and OOP?
@@ -100,7 +100,7 @@ RP is a declarative programming paradigm. In contrary to imperative programming,
 	\label{lst:basic-rp-with-rxjs}
 \end{listing}
 
-\subsection{Observer Pattern}
+\subsection{Observer Design Pattern}
 When dividing a large component into smaller sub components, we usually want these components to be as isolated as necessary so they become more reusable, hence target for loose coupling between them. Still, the new components need a way to interact with each other.
 
 The observer pattern \cite{gamma1995design} defines an interface where \emph{observers} can subscribe to state change notifications of a \emph{subject}. Once notified, an \emph{observer} might query the \emph{subject} for its latest state and act accordingly to its implementation.
@@ -116,29 +116,37 @@ The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#int
 The code in listing \ref{lst:eventtarget} shows how an event handler (the \emph{observer}) can register for events emitted by an event target (the \emph{subject}). Registered event handlers will be called one after another once the event target dispatches (\emph{notifies}) an event. The handler shown gains access to the \emph{subjects} state through the \mintinline{JavaScript}{target} property of the function parameter \mintinline{JavaScript}{e}.
 
 
-\section{Artifact Review}
-Will not do: Review on statistic
+\section{Paper Revisit (Q1 and R2.1)}
 
-I will assess the paper by Salvaneschi et al. \cite{7827078} in regards of the following aspects:
-\begin{itemize}
-	\item Applied scientific methods (foundation by Kapferer \cite{kapferer:2019:empirical} and others tbd.)
-	\item Study setup
-	\item Challenge with FAIR Principles \cite{2019arXiv190805986H} \cite{wilkinson:2016}
-\end{itemize}
+Salvaneschi et al. start with a broad overview on RP, its history, how it came to be and why it is determined as a trend in computer science for some time. Right from the start the term reactive application is defined as a piece of software which reacts continuously on stimuli of different origins. These events are either rooted in a technical system component or triggered by a human user, for example when interacting with a GUI.
+
+We get a summary of the similarities and differences of RP and the observer design pattern, chosen as representative for the OOP paradigm, within the first page. Salvaneschi et al. show benefits and potential problems of both. More concrete examples of RP and the observer pattern are given later in section 2. The papers main hypothesis is derived from the RP/OOP comparison, underpinned with external references: ``\emph{(...) it has been repeatedly argued that RP greatly improves over the traditional Observer pattern used in Object-oriented (OO) programming both (i) from the software design perspective as well as (ii) from the respective of facilitating comprehension of software.}'' Hence the lack of sufficient empirical evidence is then stated as motivation for the study at hand.
+
+The group used the study to confirm results presented earlier in 2014. With an additional 89 subjects, the new experiment was conducted with a total of 127 subjects.
 
 
 
-\section{Review Results}
+\subsection{Study Design}
+
+Research questions
+
+Work method
+
+Study subjects
+
+
+\section{Paper Review (Q1 and R2.1)}
 Is the conclusion of Salvaneschi et al. \cite{7827078} reasonable and well argued?
-
-
+\textbf{Critique 1: The paper title might hope for RP topic in general, but it is soon clear that we mostly compare with UI releated stuff}
+\textbf{Critique 2: OOP solutions for reactivity are reduces to the observer pattern. The paper misses the opportunity ti mention other approaches}
+\textbf{Critique 3: FAIR: Neither the questionnaries, code samples or any additional artifacts are available. Reproducibility?}
 
 \section{Discussion}
 Given the results, I will put RP in context with current trends in software engineering, in particular in its subdiscipline frontend engineering.
 Ideas: RxJS, Elm, ReactJS \dots tbd.
 
 \section{Conclusion}
-Summarize findings, give proposal for future work on topic.
+
 
 \bibliographystyle{splncs04}
 \bibliography{index}
