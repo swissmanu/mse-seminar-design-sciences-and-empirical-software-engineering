@@ -120,9 +120,11 @@ The code in listing \ref{lst:eventtarget} shows how an event handler (the \emph{
 
 Salvaneschi et al. start with a broad overview on RP, its history, how it came to be and why it is determined as a trend in computer science for some time. Right from the start the term reactive application is defined as a piece of software which reacts continuously on stimuli of different origins. These events are either rooted in a technical system component or triggered by a human user, for example when interacting with a GUI.
 
+\subsection{Motivation}
 We get a summary of the similarities and differences of RP and the observer design pattern, chosen as representative for the OOP paradigm, within the first page. Salvaneschi et al. show benefits and potential problems of both. More concrete examples of RP and the observer pattern are given later in section 2. The papers main hypothesis is derived from the RP/OOP comparison, underpinned with external references: ``\emph{(...) it has been repeatedly argued that RP greatly improves over the traditional Observer pattern used in Object-oriented (OO) programming both (i) from the software design perspective as well as (ii) from the respective of facilitating comprehension of software.}'' Hence the lack of sufficient empirical evidence is then stated as motivation for the study at hand.
 
-They formulate the following four research questions which they then use to build their study setup upon:
+\subsection{Study Design}
+Salvaneschi et al. formulate the following four research questions which they then use to build their study setup upon:
 
 \begin{itemize}
 	\item \emph{RQ1: Does reactive programming impact the correctness of program comprehension?}
@@ -131,24 +133,22 @@ They formulate the following four research questions which they then use to buil
 	\item \emph{RQ4: What are the reasons for a difference - if a any - in comprehending RP programs and OO programs?}
 \end{itemize}
 
-The first three research questions were evaluated in an experiment with a small group of 38 subjects in an earlier study \cite{Salvaneschi:2014:ESP:2635868.2635895} already. Adding 89 new subjects brings more statistical significance to this new study. Hence research question 4 targets to interpret insights gained from the preceding questions further.
+The first three research questions were evaluated in an experiment with a small group of 38 subjects in an earlier study \cite{Salvaneschi:2014:ESP:2635868.2635895} already. The new study at hand adds 89 new subjects contributing more statistical significance. The new research question 4 targets to further interpret insights gained from the preceding questions and study.
 
+The research group structured its study in two parts: Within limited time, (i) part one asks two groups of subjects in an experiment to interpret either ten RP or ten OOP code samples and answer questions regarding the expected behavior. This is followed by (ii) a survey of four quantitative and one qualitative question where subjects can give their opinion on comprehensibility of RP and OOP source code.
 
-
-\subsection{Study Design}
-
-Research questions
-
-Work method
+The comprehensibility part uses code examples from three different areas as defined by Salvaneschi et al.: Four questions are \emph{synthetic applications}, code describing pure data flow and the transformation of values. The six other questions are cases for \emph{graphical animations} and \emph{interactive applications}, hence all related to GUI engineering/development. Combined with a time limit, part one contributes to answer the research questions \emph{RQ1} through \emph{3}.
 
 Study subjects
 
 
 \section{Paper Review (Q1 and R2.1)}
 Is the conclusion of Salvaneschi et al. \cite{7827078} reasonable and well argued?
+
 \textbf{Critique 1: The paper title might hope for RP topic in general, but it is soon clear that we mostly compare with UI releated stuff}
 \textbf{Critique 2: OOP solutions for reactivity are reduces to the observer pattern. The paper misses the opportunity ti mention other approaches}
 \textbf{Critique 3: FAIR: Neither the questionnaries, code samples or any additional artifacts are available. Reproducibility?}
+\textbf{Critique 4: Page 4 defines grapics and UI as traditional domains for RP; is it representative to use mainly traditional domains to challenge RP with observer? ... like: what about "using the right tool for the right thing"?}
 
 \section{Discussion}
 Given the results, I will put RP in context with current trends in software engineering, in particular in its subdiscipline frontend engineering.
