@@ -141,11 +141,18 @@ The comprehensibility part uses code examples from three different areas as defi
 
 The subject population consisted exclusively of students from a software engineering course, both taught in OOP and the observer pattern as well as RP. Before going into the actual study, the total of 127 subjects were put through a quantitative self-assessment to measure the overall programming skill level of the population. This was necessary to get the subjects acquainted with the survey tool used on one hand, on the other to collect data to answer \emph{RQ3}.
 
-\subsection{Statistical Results and Findings}
+\subsection{Results and Outlook}
 
 Salvaneschi et al. processed the gathered data from their experiment using a variety of statistical tests and derive three main findings: (i) RP increases the correctness of program comprehension; with the exception of two tasks, the RP group outperformed the OO group. Finding (ii) determines that RP style code does not require more time than comprehending their OO equivalent. With finding (iii) the group finally claims that understanding reactive applications written with RP are overall easier to understand, regardless of the individual programming skill level of the subject.
 
-\subsection{Interpretation}
+The further evaluation of the survey provides then a mainly positive result in favor for RP. Beside the quantitative answers given by the subjects, especially the detailed examination of the qualitative gives an insight on the reasoning in why subjects may prefer RP over OOP or vice versa. Where subjects favoring RP speak up for overall more concise and easier composable code, subjects preferring OOP and the observer pattern do not like a steep learning curve and the hidden layer of abstraction given by the RP runtime.
+
+Indeed the research team agrees later that the hidden complexity of the RP runtime and a large API surface area, i.e. with many specialized conversion functions, might not make it easy to onboard a developer with minimal or no RP experience.
+
+With the outlook Salvaneschi et al. conclude the result evaluation with multiple suggestions for follow-up research.
+
+TODO
+
 
 
 \section{Paper Review (Q1 and R2.1)}
@@ -154,14 +161,17 @@ Is the conclusion of Salvaneschi et al. \cite{7827078} reasonable and well argue
 \begin{itemize}
 	\item \textbf{Critique 1: The paper title might hope for RP topic in general, but it is soon clear that we mostly compare with UI releated stuff}
 	\item \textbf{Critique 2: OOP solutions for reactivity are reduces to the observer pattern. The paper misses the opportunity ti mention other approaches}
-	\item \textbf{Critique 3: FAIR: Neither the questionnaries, code samples or any additional artifacts are available. Reproducibility?}
+	\item \textbf{Critique 3: FAIR:Code samples or any additional artifacts are available. Reproducibility?}
 	\item \textbf{Critique 4: Page 4 defines grapics and UI as traditional domains for RP; is it representative to use mainly traditional domains to challenge RP with observer? ... like: what about "using the right tool for the right thing"?}
 	\item \textbf{Critique 5: Page 8 switchOnce was not understandable for all subjects; Observable code might have been better comprehensible. This contradicts Finding 3, where they say RP code needs a potential lower programming skill level}
+	\item \item \textbf{Check: Claim Page 12 Observer Pattern does not provide separation of concerns}
 \end{itemize}
 
 \section{Discussion}
 Given the results, I will put RP in context with current trends in software engineering, in particular in its subdiscipline frontend engineering.
 Ideas: RxJS, Elm, ReactJS \dots tbd.
+
+Cite page 13 about operator complexity... Own experience: Yes, it is cumbersome
 
 \section{Conclusion}
 
