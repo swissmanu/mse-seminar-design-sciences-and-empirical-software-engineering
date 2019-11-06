@@ -116,7 +116,7 @@ The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#int
 The code in listing \ref{lst:eventtarget} shows how an event handler (the \emph{observer}) can register for events emitted by an event target (the \emph{subject}). Registered event handlers will be called one after another once the event target dispatches (\emph{notifies}) an event. The handler shown gains access to the \emph{subjects} state through the \mintinline{JavaScript}{target} property of the function parameter \mintinline{JavaScript}{e}.
 
 
-\section{Revisit the Paper (Q1 and R2.1)}
+\section{Revisit the Paper}
 
 Salvaneschi et al. start with a broad overview on RP, its history, how it came to be and why it is determined as a trend in computer science for some time. Right from the start the term reactive application is defined as a piece of software which reacts continuously on stimuli of different origins. These events are either rooted in a technical system component or triggered by a human user, for example when interacting with a GUI.
 
@@ -127,19 +127,19 @@ We get a summary of the similarities and differences of RP and the observer desi
 Salvaneschi et al. formulate the following four research questions which they then use to build their study setup upon:
 
 \begin{itemize}
-	\item \emph{RQ1: Does reactive programming impact the correctness of program comprehension?}
-	\item \emph{RQ2: Does reactive programming impact time for program comprehension?}
-	\item \emph{RQ3: Does comprehending RP programs require a different programming skills level than the OO style?}
-	\item \emph{RQ4: What are the reasons for a difference - if a any - in comprehending RP programs and OO programs?}
+	\item \emph{Does reactive programming impact the correctness of program comprehension?}
+	\item \emph{Does reactive programming impact time for program comprehension?}
+	\item \emph{Does comprehending RP programs require a different programming skills level than the OO style?}
+	\item \emph{What are the reasons for a difference - if a any - in comprehending RP programs and OO programs?}
 \end{itemize}
 
 The first three research questions were evaluated in an experiment with a small group of 38 subjects in an earlier study \cite{Salvaneschi:2014:ESP:2635868.2635895} already. The new study at hand adds 89 new subjects contributing more statistical significance. The new research question 4 targets to further interpret insights gained from the preceding questions and study.
 
-The research group structured its study in two parts: Within limited time, (i) part one asks two groups of subjects in an experiment to interpret either ten RP or ten OOP code samples and answer questions regarding the expected behavior. This is followed by (ii) a survey of four quantitative and one qualitative question where subjects can give their opinion on comprehensibility of RP and OOP source code.
+The research group structured its study in two parts: Within limited time, (i) part one asks two groups of subjects in an experiment to interpret either ten RP or ten OOP code samples and answer questions regarding the expected behavior. Code samples were formulated in Scala\footnote{\url{https://scala-lang.org/}}, using REScala\footnote{\url{http://www.rescala-lang.com/}} for RP. This is followed by (ii) a survey of four quantitative and one qualitative question where subjects can give their opinion on comprehensibility of RP and OOP source code.
 
-The comprehensibility part uses code examples from three different areas as defined by Salvaneschi et al.: Four questions are \emph{synthetic applications}, code describing pure data flow and the transformation of values. The six other questions are cases for \emph{graphical animations} and \emph{interactive applications}, hence all related to GUI engineering/development. Combined with a time limit, part one contributed to answer the research questions \emph{RQ1} through \emph{3}.
+The comprehensibility part uses code examples from three different areas as defined by Salvaneschi et al.: Four questions are \emph{synthetic applications}, code describing pure data flow and the transformation of values. The six other questions are cases for \emph{graphical animations} and \emph{interactive applications}, hence all related to GUI engineering/development. Combined with a time limit, part one contributed to answer the first through to the third research question.
 
-The subject population consisted exclusively of students from a software engineering course, both taught in OOP and the observer pattern as well as RP. Before going into the actual study, the total of 127 subjects were put through a quantitative self-assessment to measure the overall programming skill level of the population. This was necessary to get the subjects acquainted with the survey tool used on one hand, on the other to collect data to answer \emph{RQ3}.
+The subject population consisted exclusively of students from a software engineering course, both taught in OOP and the observer pattern as well as RP. Before going into the actual study, the total of 127 subjects were put through a quantitative self-assessment to measure the overall programming skill level of the population. This was necessary to get the subjects acquainted with the survey tool used on one hand, on the other to collect data to answer their third research question.
 
 \subsection{Results and Outlook}
 
@@ -157,6 +157,9 @@ With the outlook Salvaneschi et al. conclude the result evaluation with three su
 	\item To understand how programmers work will eventually lead to improved \textbf{tool support} i.e. in IDEs. Reactive applications using RP or OOP can be visualized using a graph showing dependencies of values to each other. Hence the potential of a uniform way to interpret reactive code, no matter what paradigm it uses, might be worth of further research.
 \end{itemize}
 
+\subsection{Threats to Validity}
+
+Within the section \emph{Threats to Validity}, Salvaneschi et al. an overview of factors which could have pulled or pushed their results into one or another direction. They give insight in how they tried to minimize those influences, if possible. Neglecting \emph{construct} and \emph{internal validity}, the group identifies five issues related to \emph{external validity}: (i) Comparing two programming paradigms depends on an individuals programming skill level. Though a bias towards RP can be desisted, the study's result shows a favorable tendency towards RP in the end. (ii) The code examples used throughout the comprehension task try to cover the main areas of reactive applications. Hence these samples were carefully crafted to avoid giving away correct answers to easily, it is still questionable how representative for real-world applications they are. The research group members tried to minimize this thread by code review and iterative improvement. (iii) The experiment was conducted with student subjects solely. Though differences to more experienced developers can be considered as not significant as a cited study \cite{DiPenta} indicates. (iv) Finally the selection of Scala and REScala can be challenged to be representative for comprehending RP code overall. The selection was satisfying for this study though since the subjects were all exposed the same amount to these technologies and provides common foundation for the experiment.
 
 
 \section{Paper Review (Q1 and R2.1)}
@@ -171,7 +174,9 @@ Is the conclusion of Salvaneschi et al. \cite{7827078} reasonable and well argue
 	\item \textbf{Check: Claim Page 12 Observer Pattern does not provide separation of concerns}
 	\item \textbf{Critique: Page 13 and 14: Why suddently an analogy to operating system architecture?}
 	\item \textbf{Pick Up: Toolsupport Rxjs}
-	\item \item \textbf{Pick Up: ECMAScript Streams}
+	\item \textbf{Pick Up: ECMAScript Streams}
+	\item \textbf{Critique: Page 14: Renaming variables to neutral things ... Real situation?}
+	\item \textbf{Critique: Page 15: External Validity: Short RP training: Hype factor: WOW THATS NEW!}
 \end{itemize}
 
 \section{Discussion}
