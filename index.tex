@@ -103,7 +103,7 @@ RP is a declarative programming paradigm. In contrary to imperative programming,
 \subsection{Observer Design Pattern}
 When dividing a large component into smaller sub components, we usually want these components to be as isolated as necessary so they become more reusable, hence target for loose coupling between them. Still, the new components need a way to interact with each other.
 
-The observer pattern \cite{gamma1995design} defines an interface where \emph{observers} can subscribe to state change notifications of a \emph{subject}. Once notified, an \emph{observer} might query the \emph{subject} for its latest state and act accordingly to its implementation.
+The observer pattern \cite{gamma1995design} deeply rooted in OOP defines an interface where \emph{observers} can subscribe to state change notifications of a \emph{subject}. Once notified, an \emph{observer} might query the \emph{subject} for its latest state and act accordingly to its implementation.
 
 The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#interface-eventtarget}} of the document object model \emph{(DOM)} API exposed to a browsers JavaScript runtime (among others) is an evolution of the observer pattern.
 
@@ -162,28 +162,58 @@ With the outlook Salvaneschi et al. conclude the result evaluation with three su
 Within the section \emph{Threats to Validity}, Salvaneschi et al. an overview of factors which could have pulled or pushed their results into one or another direction. They give insight in how they tried to minimize those influences, if possible. Neglecting \emph{construct} and \emph{internal validity}, the group identifies five issues related to \emph{external validity}: (i) Comparing two programming paradigms depends on an individuals programming skill level. Though a bias towards RP can be desisted, the study's result shows a favorable tendency towards RP in the end. (ii) The code examples used throughout the comprehension task try to cover the main areas of reactive applications. Hence these samples were carefully crafted to avoid giving away correct answers to easily, it is still questionable how representative for real-world applications they are. The research group members tried to minimize this thread by code review and iterative improvement. (iii) The experiment was conducted with student subjects solely. Though differences to more experienced developers can be considered as not significant as a cited study \cite{DiPenta} indicates. (iv) Finally the selection of Scala and REScala can be challenged to be representative for comprehending RP code overall. The selection was satisfying for this study though since the subjects were all exposed the same amount to these technologies and provides common foundation for the experiment.
 
 
-\section{Paper Review (Q1 and R2.1)}
-Is the conclusion of Salvaneschi et al. \cite{7827078} reasonable and well argued?
+\section{Paper Review}
+
+\subsection{Application of Empirical Research Methods}
+
+The main part of the study was conducted through an experiment. With its fixed-design setup, quantitative data was collected and evaluated. With the survey ran upfront, they collected further quantitative data regarding the programming skill level of their subject population, but also ensured all participants were familiar with the software used in the main study. This precaution by Salvaneschi et al. ensured that the final experiment was not biased by unfamiliarity with the setup.
+
+The experiment was followed by another survey consisting of four quantitative and one open, qualitative question. Again, this survey was carefully structured so the open question could potentially be answered as unbiased as possible as the research group emphasize in their report.
+
+It is crucible for later revalidation of the presented results to reproduce the described study setup. The questions used in the afterwards survey are available in section 5.2 of the report. Though code examples from the experiment, questions used in the preparation survey nor the survey software are provided.
+
+The paper does not give any explicit indication of the application of concepts and approaches defined by design science. Hence if we understand the  study at hand as the next, refined iteration of the preceding work by Salvaneschi et al. \cite{Salvaneschi:2014:ESP:2635868.2635895}, we could deduce the application of such principles on a higher level.
+
+We think the study applied empirical research methods carefully and in a valid way. Hence the unavailability of mentioned complementary information makes the reproducibility at a later point harder or even impossible if the cannot be retrieved at all.
+
+\subsection{Application of FAIR Research Principles}
+
+
 
 \begin{itemize}
-	\item \textbf{Critique 1: The paper title might hope for RP topic in general, but it is soon clear that we mostly compare with UI releated stuff}
-	\item \textbf{Critique 2: OOP solutions for reactivity are reduces to the observer pattern. The paper misses the opportunity ti mention other approaches}
-	\item \textbf{Critique 3: FAIR:Code samples or any additional artifacts are available. Reproducibility?}
-	\item \textbf{Critique 4: Page 4 defines grapics and UI as traditional domains for RP; is it representative to use mainly traditional domains to challenge RP with observer? ... like: what about "using the right tool for the right thing"?}
 	\item \textbf{Critique 5: Page 8 switchOnce was not understandable for all subjects; Observable code might have been better comprehensible. This contradicts Finding 3, where they say RP code needs a potential lower programming skill level}
-	\item \textbf{Check: Claim Page 12 Observer Pattern does not provide separation of concerns}
-	\item \textbf{Critique: Page 13 and 14: Why suddently an analogy to operating system architecture?}
-	\item \textbf{Pick Up: Toolsupport Rxjs}
-	\item \textbf{Pick Up: ECMAScript Streams}
 	\item \textbf{Critique: Page 14: Renaming variables to neutral things ... Real situation?}
 	\item \textbf{Critique: Page 15: External Validity: Short RP training: Hype factor: WOW THATS NEW!}
 \end{itemize}
 
-\section{Discussion}
-Given the results, I will put RP in context with current trends in software engineering, in particular in its subdiscipline frontend engineering.
-Ideas: RxJS, Elm, ReactJS \dots tbd.
+\begin{itemize}
+	\item \textbf{Critique 3: FAIR:Code samples or any additional artifacts are available. Reproducibility?}
+\end{itemize}
 
-Cite page 13 about operator complexity... Own experience: Yes, it is cumbersome
+\subsection{RP and OOP}
+
+\begin{itemize}
+	\item \textbf{Critique 4: Page 4 defines grapics and UI as traditional domains for RP; is it representative to use mainly traditional domains to challenge RP with observer? ... like: what about "using the right tool for the right thing"?}
+	\item \textbf{Critique 1: The paper title might hope for RP topic in general, but it is soon clear that we mostly compare with UI releated stuff}
+	\item \textbf{Critique 2: OOP solutions for reactivity are reduces to the observer pattern. The paper misses the opportunity ti mention other approaches}
+\end{itemize}
+
+
+\begin{itemize}
+	\item \textbf{Check: Claim Page 12 Observer Pattern does not provide separation of concerns}
+	\item \textbf{Critique: Page 13 and 14: Why suddently an analogy to operating system architecture?}
+\end{itemize}
+
+\section{Discussion}
+Given the results, I will put RP in context with current trends in software engineering, in particular in its subdiscipline web frontend engineering.
+Ideas: RxJS, BaconJS, Elm, ReactJS \dots tbd.
+
+\begin{itemize}
+	\item \textbf{Pick Up: Toolsupport Rxjs}
+	\item \textbf{Pick Up: ECMAScript Streams}
+	\item \textbf{Cite page 13 about operator complexity... Own experience: Yes, it is cumbersome}
+\end{itemize}
+
 
 \section{Conclusion}
 
