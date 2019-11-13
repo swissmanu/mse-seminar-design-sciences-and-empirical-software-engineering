@@ -78,6 +78,8 @@ Hence software engineering problems lack analytical and scientific formalism, em
 Roel J. Wieranga derives guidelines specifically for software engineering research projects from design science in his book \emph{Design Science Methodology for Information Systems and Software Engineering} \cite{wieringa}. As Balestra \cite{balestra:2019:designscience:articactandcontext} summarizes in his paper about design science and their application in software projects, Wieranga \cite{wieringa} defines an iterative process consisting of a \emph{design} and \emph{investigation} step. During \emph{design}, an \emph{artifact} is designed to satisfy the goals of one or more \emph{stakeholders} under consideration of a specific \emph{knowledge context}. The artifact and context is then put under \emph{investigation} to answer knowledge questions. These answers lead to a feedback loop where gained insights get fed into another design iteration. This process might be repeated until the stakeholder goals are met at a satisfying level.
 
 \subsection{FAIR Research Principles}
+\label{sec:fair}
+
 \emph{FAIR} is an abbreviation for Findability, Accessibility, Interoperability and Reusability. It was first introduced by Mark. D. Wilkinson et al. in March 2016 \cite{wilkinson:2016} and describes guidelines to foster digital research objects over the long-term. The guidelines want to maximization the value of research results for the science community as a whole. Following a summary of the four cornerstones:
 
 \begin{itemize}
@@ -176,12 +178,6 @@ The paper does not give any explicit indication of the application of concepts a
 
 The study applied empirical research methods carefully and in a valid way overall. Hence the unavailability of mentioned complementary information makes the reproducibility at a later point hard if not impossible in case it cannot be retrieved at all.
 
-\begin{itemize}
-	\item \textbf{Critique 5: Page 8 switchOnce was not understandable for all subjects; Observable code might have been better comprehensible. This contradicts Finding 3, where they say RP code needs a potential lower programming skill level}
-	\item \textbf{Critique: Page 14: Renaming variables to neutral things ... Real situation?}
-	\item \textbf{Critique: Page 15: External Validity: Short RP training: Hype factor: WOW THATS NEW!}
-\end{itemize}
-
 \subsection{Application of FAIR Research Principles}
 
 The paper has a unique digital object identifier (\emph{DOI}) assigned and is, given necessary access permissions are granted, available online via the IEEE Xplore Online Library\footnote{\url{https://ieeexplore.ieee.org}}. This platform provides extensive meta information like citations, keywords or other work referencing the paper. By doing so, the research report conforms fully with criteria for \emph{Findability} and \emph{Accessibility}. We can further confirm that in regards of \emph{Interoperability} only domain-specific, accepted vocabularies and language is used. Qualified references to the work of third parties are present.
@@ -200,9 +196,48 @@ The paradigm of \textbf{Object Oriented Programming} is less prominently introdu
 
 Even though the paper assumes the observer design pattern as common knowledge in the expert audience, it could have been introduced more on a par with RP. Furthermore the comparison between the observer pattern and RP is legit, reducing the OOP paradigm to one sole case is disputable. We would have welcomed a more differentiated approach where i.e. the patterns roots in OOP are noted, but then are not used throughout the report as synonym for the pattern itself.
 
+\section{The Application of RP}
+
+The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well for graphical animations. We will revisit and specify their definition of a \emph{reactive application} and introduce fundamental principles stated by the \emph{Reactive Manifesto 2.0} \cite{reactivemanifesto}. We will derive typical characteristics from the manifesto allowing us to describe situations where the application of RP might be considered worth the added abstraction as mentioned in the study discussed.
+
+\subsection{The Reactive Manifesto}
+
+\subsection{When and Where?}
+
+\subsection{RP and Frontend Engineering}
 
 
+\begin{itemize}
+	\item JavaScript and TypeScript
+	\item RxJS
+	\item BaconJS
+	\item NgRx
+	\item Elm
+	\item OCaml/Reason
+\end{itemize}
 
+
+\section{Conclusion}
+
+
+\appendix
+\section{FAIR Research Principles Check List}
+
+We used this check list to ensure this paper and its complementary information confirms to FAIR research principles for software engineering research described in section \ref{sec:fair}. It might be useful for other authors as well.
+
+\emph{Idea: A quick check list for a software engineering research paper/study to comply with suggested FAIR research principles}
+
+\bibliographystyle{splncs04}
+\bibliography{index}
+
+\section*{License}
+\ccby\thinspace\thinspace This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License}.
+
+\begin{itemize}
+	\item \textbf{Critique 5: Page 8 switchOnce was not understandable for all subjects; Observable code might have been better comprehensible. This contradicts Finding 3, where they say RP code needs a potential lower programming skill level}
+	\item \textbf{Critique: Page 14: Renaming variables to neutral things ... Real situation?}
+	\item \textbf{Critique: Page 15: External Validity: Short RP training: Hype factor: WOW THATS NEW!}
+\end{itemize}
 
 \begin{itemize}
 	\item \textbf{Critique 4: Page 4 defines grapics and UI as traditional domains for RP; is it representative to use mainly traditional domains to challenge RP with observer? ... like: what about "using the right tool for the right thing"?}
@@ -216,24 +251,6 @@ Even though the paper assumes the observer design pattern as common knowledge in
 	\item \textbf{Critique: Page 13 and 14: Why suddently an analogy to operating system architecture?}
 \end{itemize}
 
-\section{RP and Frontend Software Engineering Today}
-
-\subsection{ECMAScript}
-
-\begin{itemize}
-	\item RxJS
-	\item BaconJS
-\end{itemize}
-
-\subsection{Other Languages}
-
-\begin{itemize}
-	\item Elm
-	\item OCaml/Reason
-\end{itemize}
-
-Given the results, I will put RP in context with current trends in software engineering, in particular in its subdiscipline web frontend engineering.
-Ideas: RxJS, BaconJS, Elm, ReactJS \dots tbd.
 
 \begin{itemize}
 	\item \textbf{Pick Up: Toolsupport Rxjs}
@@ -241,14 +258,5 @@ Ideas: RxJS, BaconJS, Elm, ReactJS \dots tbd.
 	\item \textbf{Cite page 13 about operator complexity... Own experience: Yes, it is cumbersome}
 \end{itemize}
 
-
-\section{Conclusion}
-
-
-\bibliographystyle{splncs04}
-\bibliography{index}
-
-\section*{License}
-\ccby\thinspace\thinspace This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License}.
 
 \end{document}
