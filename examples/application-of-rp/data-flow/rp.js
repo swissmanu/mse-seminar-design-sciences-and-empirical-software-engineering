@@ -1,5 +1,5 @@
 fetchProfile()
-  .then(async (profile) => {
+  .then(async profile => {
     const avatar = await fetchAvatar(profile);
     return { ...profile, ...avatar };
   })
