@@ -9,3 +9,4 @@
 *.synctex.gz
 *.out
 _minted-index
+node_modules

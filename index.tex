@@ -99,8 +99,10 @@ RP is a declarative programming paradigm. In contrary to imperative programming,
 		// TODO Example RP
 	\end{minted}
 	\caption{}
-	\label{lst:basic-rp-with-rxjs}
+	\label{lst:basic-rp-with-baconjs}
 \end{listing}
+
+\emph{Code listings presented in this paper are written in JavaScript (ECMAScript 2017\footnote{\url{https://www.ecma-international.org/ecma-262/8.0/}}) if not stated different.}
 
 \subsection{Observer Design Pattern}
 When dividing a large component into smaller sub components, we usually want these components to be as isolated as necessary so they become more reusable, hence target for loose coupling between them. Still, the new components need a way to interact with each other.
@@ -111,7 +113,7 @@ The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#int
 
 \begin{listing}[H]
 	\mint{JavaScript}{window.addEventListener('click', e => console.log('click', e.target));}
-	\caption{Add a click handler to the \mintinline{JavaScript}{window} event target (JavaScript)}
+	\caption{Add a click handler to the \mintinline{JavaScript}{window} event target}
 	\label{lst:eventtarget}
 \end{listing}
 
@@ -198,11 +200,70 @@ Even though the paper assumes the observer design pattern as common knowledge in
 
 \section{The Application of RP}
 
-The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well for graphical animations. We will revisit and specify their definition of a \emph{reactive application} and introduce fundamental principles stated by the \emph{Reactive Manifesto 2.0} \cite{reactivemanifesto}. We will derive typical characteristics from the manifesto allowing us to describe situations where the application of RP might be considered worth the added abstraction as mentioned in the study discussed.
+The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well for graphical animations. Hence all of these problems can ultimately be implemented with RP and the observer pattern likewise, there is no measure given when the alluded tradeoffs like the additional layer of abstraction (RP) or inversion of control (observer) outweigh the gained benefits. We will show that there is no case for making RP nor the observer design pattern the ``only one right'' solution for every situation.
 
-\subsection{The Reactive Manifesto}
+We give two typical scenarios from the area of frontend software engineering in the following and derive an answer to \emph{RQ2.2 ``When should RP be considered, and when not?''} accordingly.
 
-\subsection{When and Where?}
+\subsection{Modelling Data Flow}
+
+\begin{framed}
+	\noindent\emph{Scenario:} Fetch a users complete profile information (first- and surname as well as their avatar picture) from two distinct data sources (\mintinline{JavaScript}{fetchProfile} and \mintinline{JavaScript}{fetchAvatar}). The profile information contains required input to fetch the avatar. Show the combined information in the UI at once using \mintinline{JavaScript}{renderUser}.
+\end{framed}
+
+This scenario describes a common problem where the information from a remote resource needs to be combined with another one. The situation gets a bit more complex when the result of the first resource is required as input for the second one. Generally spoken, a solution to this problem describes the flow (fetch one resource after the other) and transformation (combination of both results) of data.
+
+We can implement a solution facilitating a basic RP approach using the \mintinline{JavaScript}{Promise}\footnote{\url{https://www.ecma-international.org/ecma-262/6.0/\#sec-promise-objects}} API available in modern JavaScript runtime environments as exemplified in listing \ref{lst:case-for-rp-rp}.
+
+\begin{listing}
+	\begin{minted}{JavaScript}
+		fetchProfile()
+			.then(async (profile) => {
+				const avatar = await fetchAvatar(profile);
+				return { ...profile, ...avatar };
+			})
+			.then(renderUser);
+	\end{minted}
+	\caption{Render user profile using RP with the \mintinline{JavaScript}{Promise} API}
+	\label{lst:case-for-rp-rp}
+\end{listing}
+
+Listing \ref{lst:case-for-rp-observer} implements the exact same functionality as \ref{lst:case-for-rp-rp} but leverages an implementation of the observer design pattern after Gamma et al. \cite{gamma1995design}. By solely inspecting the line count of both implementation, we support results of Salvaneschi et al. \cite{7827078} regarding added boilerplate code. The RP solution reflects the mental model of fetching one resource after another clearly, the observer needs to implement code for handling \mintinline{JavaScript}{fetchAvatar}s result (line 12) before \mintinline{JavaScript}{fetchProfile} is even called (line 17) which further goes along with their research results regarding comprehensibility of RP code.
+
+\begin{listing}[H]
+	\begin{minted}{JavaScript}
+		const profileObservable = observable();
+		const avatarObservable = observable();
+
+		avatarObservable.addObserver(observable => {
+			renderUser({
+				...profileObservable.value,
+				...observable.value
+			});
+		});
+
+		profileObservable.addObserver(async ({ value: profile }) => {
+			const avatar = await fetchAvatar(profile);
+			avatarObservable.value = avatar;
+			avatarObservable.notify();
+		});
+
+		fetchProfile().then(profile => {
+			profileObservable.value = profile;
+			profileObservable.notify();
+		});
+	\end{minted}
+	\caption{Render user profile using a custom observer API}
+	\label{lst:case-for-rp-observer}
+\end{listing}
+
+
+
+
+\subsection{Event Handling: A Case for the Observer Pattern}
+
+
+
+
 
 \subsection{RP and Frontend Engineering}
 
@@ -232,6 +293,16 @@ We used this check list to ensure this paper and its complementary information c
 
 \section*{License}
 \ccby\thinspace\thinspace This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License}.
+
+
+
+We will derive a few basic requirements to measure the applicability of RP using system architecture principles defined by the \emph{Reactive Manifesto 2.0} \cite{reactivemanifesto} in order to answer \emph{RQ2.2}.
+
+The \emph{Reactive Manifesto 2.0} \cite{reactivemanifesto} is a high-level software architecture charter installing four pillars describing characteristics of modern software systems. Such a system, and all of its components, is required to react \emph{Responsive} by exposing a reaction on internal and external stimuli in timely manner. This behavior must be consistent, no matter the system was able to process a stimuli successfully or not. A system is then called \emph{Resilient} when its components can recover from a failure state, i.e. delegate their functionality to a replicated instance until their full restore. In order to stay responsive, a system must be able to ``scale'' proportionally with the work it has to deal with. An \emph{Elastic} system can reconfigure itself according to the current workload: Shard or replicate components under heavy load and share request among them. But then again downsize the number of component instances when the number of requests drop to save resources. Finally the manifesto requires a reactive system to be \emph{Message Driven}. Asynchronous message passing mechanisms supports previous three principles by establishing clear boundaries ensuring loose coupling between them.
+
+
+
+
 
 \begin{itemize}
 	\item \textbf{Critique 5: Page 8 switchOnce was not understandable for all subjects; Observable code might have been better comprehensible. This contradicts Finding 3, where they say RP code needs a potential lower programming skill level}
