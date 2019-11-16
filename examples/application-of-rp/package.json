@@ -1,0 +1,13 @@
+{
+  "name": "application-of-rp",
+  "version": "0.0.1",
+  "author": "Manuel Alabor",
+  "license": "CC-BY-4.0",
+  "private": true,
+  "dependencies": {
+    "baconjs": "^3.0.11"
+  },
+  "prettier": {
+    "singleQuote": true
+  }
+}
