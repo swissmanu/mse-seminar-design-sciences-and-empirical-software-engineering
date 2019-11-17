@@ -66,7 +66,7 @@ As the paper further compares RP with the observer design pattern \cite{gamma199
 
 However, we will not review the papers application of statistical methods since this is out of scope.
 
-In the following we will introduce and clarify important terms. Section 2 and 3 will examine the mentioned paper more closely and answer \emph{RQ1} and \emph{RQ2.1}. The questions \emph{RQ2.2} through \emph{2.4} will be tackled in section 4 where discuss earlier findings in the context of frontend engineering.
+In the following we will introduce and clarify important terms. Section 2 and 3 will examine the mentioned paper more closely and answer \emph{RQ1} and \emph{RQ2.1}. The questions \emph{RQ2.2} through \emph{2.4} will be tackled in section 4 where discuss earlier findings in the context of frontend engineering. Please note  further that if not stated differently, all code listings presented in this paper are written in JavaScript (ECMAScript 2017\footnote{\url{https://www.ecma-international.org/ecma-262/8.0/}}).
 
 \subsection{Empirical Software Engineering}
 
@@ -102,8 +102,6 @@ RP is a declarative programming paradigm. In contrary to imperative programming,
 	\caption{}
 	\label{lst:basic-rp-with-baconjs}
 \end{listing}
-
-\emph{Code listings presented in this paper are written in JavaScript (ECMAScript 2017\footnote{\url{https://www.ecma-international.org/ecma-262/8.0/}}) if not stated different.}
 
 \subsection{Observer Design Pattern}
 When dividing a large component into smaller sub components, we usually want these components to be as isolated as necessary so they become more reusable, hence target for loose coupling between them. Still, the new components need a way to interact with each other.
@@ -301,14 +299,22 @@ So, when should RP used and when should the observer design pattern be applied u
 \end{itemize}
 
 \section{Conclusion}
-
+\begin{itemize}
+	\item Revisit Paper Review
+	\item Revisit Practial Application of rp
+	\item Revisit Outlook
+	\item Mention FAIR Check List in Appendix
+	\item Closing Words
+\end{itemize}
 
 \appendix
 \section{FAIR Research Principles Check List}
 
 We used this check list to ensure this paper and its complementary information confirms to FAIR research principles for software engineering research described in section \ref{sec:fair}. It might be useful for other authors as well.
 
-\emph{Idea: A quick check list for a software engineering research paper/study to comply with suggested FAIR research principles}
+\begin{framed}
+	\noindent\emph{Idea: A quick check list for a software engineering research paper/study to comply with suggested FAIR research principles}
+\end{framed}
 
 \bibliographystyle{splncs04}
 \bibliography{index}
@@ -317,13 +323,16 @@ We used this check list to ensure this paper and its complementary information c
 \ccby\thinspace\thinspace This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License}.
 
 
+\newpage
+\section*{Thought and Snippet Storage}
+
+\begin{framed}
+	\noindent\textbf{This section will not be part of the final version}
+\end{framed}
 
 We will derive a few basic requirements to measure the applicability of RP using system architecture principles defined by the \emph{Reactive Manifesto 2.0} \cite{reactivemanifesto} in order to answer \emph{RQ2.2}.
 
 The \emph{Reactive Manifesto 2.0} \cite{reactivemanifesto} is a high-level software architecture charter installing four pillars describing characteristics of modern software systems. Such a system, and all of its components, is required to react \emph{Responsive} by exposing a reaction on internal and external stimuli in timely manner. This behavior must be consistent, no matter the system was able to process a stimuli successfully or not. A system is then called \emph{Resilient} when its components can recover from a failure state, i.e. delegate their functionality to a replicated instance until their full restore. In order to stay responsive, a system must be able to ``scale'' proportionally with the work it has to deal with. An \emph{Elastic} system can reconfigure itself according to the current workload: Shard or replicate components under heavy load and share request among them. But then again downsize the number of component instances when the number of requests drop to save resources. Finally the manifesto requires a reactive system to be \emph{Message Driven}. Asynchronous message passing mechanisms supports previous three principles by establishing clear boundaries ensuring loose coupling between them.
-
-
-
 
 
 \begin{itemize}
@@ -350,6 +359,5 @@ The \emph{Reactive Manifesto 2.0} \cite{reactivemanifesto} is a high-level softw
 	\item \textbf{Pick Up: ECMAScript Streams}
 	\item \textbf{Cite page 13 about operator complexity... Own experience: Yes, it is cumbersome}
 \end{itemize}
-
 
 \end{document}
