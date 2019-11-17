@@ -5,5 +5,5 @@
 ## Roadmap
 
 - [x] Outline
-- [ ] Draft
+- [x] Draft
 - [ ] Peer review ready (Zenodo publication)
