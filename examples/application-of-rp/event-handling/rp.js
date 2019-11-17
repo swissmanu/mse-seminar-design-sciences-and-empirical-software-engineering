@@ -1,1 +1,3 @@
-Bacon.fromEvent(getButton(), "click").onValue(() => logTime(new Date()));
+Bacon.fromEvent(getButton(), "click")
+  .map(() => new Date())
+  .onValue(logTime);

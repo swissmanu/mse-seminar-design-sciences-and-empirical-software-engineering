@@ -203,15 +203,15 @@ Even though the paper assumes the observer design pattern as common knowledge in
 
 The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well for graphical animations. Hence all of these problems can ultimately be implemented with RP and the observer pattern likewise, there is no measure given when the alluded tradeoffs like the additional layer of abstraction (RP) or inversion of control (observer) outweigh the gained benefits. We will show that there is no case for making RP nor the observer design pattern the ``only one right'' solution for every situation.
 
-We give two typical scenarios from the area of frontend software engineering in the following and derive an answer to \emph{RQ2.2 ``When should RP be considered, and when not?''} accordingly.
+We give two typical use cases from the area of frontend software engineering in the following and derive an answer to \emph{RQ2.2 ``When should RP be considered, and when not?''} accordingly.
 
 \subsection{Modelling Data Flow}
 
 \begin{framed}
-	\noindent\emph{Scenario:} Fetch a users complete profile information (first- and surname as well as their avatar picture) from two distinct data sources (\mintinline{JavaScript}{fetchProfile} and \mintinline{JavaScript}{fetchAvatar}). The profile information contains required input to fetch the avatar. Show the combined information in the UI at once using \mintinline{JavaScript}{renderUser}.
+	\noindent\emph{UC1 Data Flow:} Fetch a users complete profile information (first- and surname as well as their avatar picture) from two distinct data sources (\mintinline{JavaScript}{fetchProfile} and \mintinline{JavaScript}{fetchAvatar}). The profile information contains required input to fetch the avatar. Show the combined information in the UI at once using \mintinline{JavaScript}{renderUser}.
 \end{framed}
 
-This scenario describes a common problem where the information from a remote resource needs to be combined with another one. The situation gets a bit more complex when the result of the first resource is required as input for the second one. Generally spoken, a solution to this problem describes the flow (fetch one resource after the other) and transformation (combination of both results) of data.
+The case describes a common problem where the information from a remote resource needs to be combined with another one. The situation gets a bit more complex when the result of the first resource is required as input for the second one. Generally spoken, a solution to this problem describes the flow (fetch one resource after the other) and transformation (combination of both results) of data.
 
 We can implement a solution facilitating a basic RP approach using the \mintinline{JavaScript}{Promise}\footnote{\url{https://www.ecma-international.org/ecma-262/6.0/\#sec-promise-objects}} API available in modern JavaScript runtime environments as exemplified in listing \ref{lst:data-flow-rp}.
 
@@ -259,13 +259,13 @@ Listing \ref{lst:data-flow-observer} implements the exact same functionality as 
 
 \subsection{Event Handling}
 
-\textbf{TODO Revisit and check if this example is good/deep enough} The second scenario is rather simple in its formulation, though represents the recurring common task of handling user interaction events when building frontend application.
+\textbf{TODO Revisit and check if this example is good/deep enough} The second use case is rather simple in its formulation, though represents the recurring common task of handling user interaction events when building frontend application.
 
 \begin{framed}
-	\noindent\emph{Scenario:} When a user clicks a button, add the current time to the click log list.
+	\noindent\emph{UC2 Event Handling:} When a user clicks a button, add the current time to the click log list.
 \end{framed}
 
-Listing \ref{lst:event-handling-observer} (observer) and \ref{lst:event-handling-rp} (RP) both show a simplistic solution for this problem.
+Listing \ref{lst:event-handling-observer} (observer) and \ref{lst:event-handling-rp} (RP) both show a simplistic solution for the above use case. Though both look in essence similar, the RP implementation using \emph{BaconJS}\footnote{\url{http://baconjs.github.io/}} implies a lot of additional work behind the scene: \mintinline{JavaScript}{fromEvent} creates an \mintinline{JavaScript}{EventStream} which is connected to click events of the button. The \mintinline{JavaScript}{EventStream} emits every event, generates a \mintinline{JavaScript}{Date} using the \mintinline{JavaScript}{map} combinator and finally calls \mintinline{JavaScript}{logTime}. Embracing the observer design pattern without any detour, \ref{lst:event-handling-observer} registers an observer using \mintinline{JavaScript}{addEventListener} and calls \mintinline{JavaScript}{logTime} straight away.
 
 \begin{listing}[H]
 	\begin{minted}{JavaScript}
@@ -277,13 +277,22 @@ Listing \ref{lst:event-handling-observer} (observer) and \ref{lst:event-handling
 
 \begin{listing}[H]
 	\begin{minted}{JavaScript}
-		Bacon.fromEvent(getButton(), "click").onValue(() => logTime(new Date()));
+		Bacon.fromEvent(getButton(), "click")
+			.map(() => new Date())
+			.onValue(logTime);
 	\end{minted}
-	\caption{Log time using an \mintinline{JavaScript}{EventStream} from \emph{BaconJS}}
+	\caption{Log time using a BaconJS \mintinline{JavaScript}{EventStream}}
 	\label{lst:event-handling-rp}
 \end{listing}
 
+
 \subsection{When RP? When Observer?}
+
+With UC1 and UC2 we saw two examples how RP and the observer design pattern can lead to solutions for the same problem. UC1 confirms the most important findings regarding benefits of RP by Salvaneschi et al.: Boilerplate code is reduced significantly and the declarative way of describing data flows improves on the comprehensibility of the source code. We can affirm this further by our own experience during the construction of the examples: Refactoring the observer based code was more prone to runtime errors because of the ramified nature of it.
+
+UC2 contrasts with UC1 strongly by intention. The problem is more simplistic on one hand, on the other it might look unfair to apply RP on an API already leveraging the observer pattern like \mintinline{JavaScript}{EventTarget} does. Indeed we argue that applying RP just for the sake of it is dangerous on the long run. Introducing hidden complexity (\mintinline{JavaScript}{EventStream} generated by \mintinline{JavaScript}{fromEvent}) does not improve the source code itself nor its comprehensibility in any way. In fact it will eventually make debugging problems harder down the road.
+
+So, when should RP used and when should the observer design pattern be applied ultimately? We refuse to take position for one or the other. Hence we support that RP code is more comprehensible when it comes to the description of complex succession of data transformations over time as Salvaneschi et al. proofed in their study. In contrary we also cannot approve its blind application for every problem given. As exemplified with UC2 previously, there are situations where the observer pattern has its benefits over RP too.
 
 \subsection{Outlook}
 
