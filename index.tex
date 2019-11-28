@@ -96,36 +96,42 @@ We will use a modern JavaScript dialect (ECMAScript 2017\footnote{\url{https://w
 \subsection{Reactive Programming}
 RP is a declarative programming paradigm. In contrary to imperative programming, declarative code describes \emph{what} should be achieved rather than \emph{how} the process leading to that result looks like. With RP, we describe values, their transformation over time and how they depend on each other \cite{8354906}. A runtime system propagates changed values to their relevant dependencies, execute declared computations and ensures always a consistent state.
 
-The example code in Listing \ref{lst:rp-with-baconjs} uses the RP runtime of \emph{BaconJS}\footnote{\url{http://baconjs.github.io/}} to hook up to \mintinline{JavaScript}{keyup} events of a text field. Once the user does not change the fields value for more than 300 Milliseconds (line 4), the current value is transformed to its upper case representation and gets displayed.
+Listing \ref{lst:rp-with-baconjs} shows an implementation for continuously displaying the upper case value of a text field in an output area using the RP runtime of \emph{BaconJS}\footnote{\url{http://baconjs.github.io/}}.
 
 \begin{listing}[H]
 	\begin{minted}{JavaScript}
 		Bacon
-		.fromEvent(document.getElementById("input"), "keyup")
-		.map(({ target: { value }}) => value)
-		.debounce(300)
-		.map(value => value.toUpperCase())
-		.onValue(value => output.textContent = value);
+			.fromEvent(getTextField(), "keyup")
+			.debounce(300)
+			.map(({ target: { value }}) => value)
+			.map(value => value.toUpperCase())
+			.onValue(value => setOutput(value));
 	\end{minted}
-	\caption{Display the upper case value of a text field with BaconJS if not changed for 300 Milliseconds}
+	\caption{Display the upper case value of a text field with BaconJS if not changed for 300 milliseconds}
 	\label{lst:rp-with-baconjs}
 \end{listing}
+
+Line 1 subscribes to key events triggered every time the user releases a key. In case the user types a long text, the \mintinline{JavaScript}{debounce} combinator on line 2 prevents downstream computations being executed too many times. Once the user stopped typing for at least 300 milliseconds, the \mintinline{JavaScript}{map} combinator is used to extract the fields current value (line 4) as well as for transforming the value to an upper case string (line 5). Line 6 finally displays the resulting string using a side effect.
 
 \subsection{Observer Design Pattern}
 When dividing a large component into smaller sub components, we usually want these components to be as isolated as necessary so they become more reusable, hence target for loose coupling between them. Still, the new components need a way to interact with each other.
 
-The Observer pattern \cite{gamma1995design} is deeply rooted in OOP and defines an interface where \emph{observers} can subscribe to state change notifications of a \emph{subject}. Once notified, an \emph{observer} might query the \emph{subject} for its latest state and act accordingly to its implementation.
-
-The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#interface-eventtarget}} of the document object model \emph{(DOM)} API exposed to a browsers JavaScript runtime (among others) is an evolution of the Observer pattern.
+The Observer pattern \cite{gamma1995design} is deeply rooted in OOP and defines an interface where \emph{observers} can subscribe to state change notifications of a \emph{subject}. Once notified, an \emph{observer} might query the \emph{subject} for its latest state and act accordingly to its implementation. The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#interface-eventtarget}}, part of the Document Object Model \emph{(DOM)} API, is an evolution of the Observer pattern. It allows modern JavaScript engines to hook into a browsers internal data model. This interface is used in Listing \ref{lst:eventtarget} to implement functionality presented in the previous subsection again:
 
 \begin{listing}[H]
-	\mint{JavaScript}{window.addEventListener("click", e => console.log("click", e.target));}
-	\caption{Add a click handler to the \mintinline{JavaScript}{window} event target}
+	\begin{minted}{JavaScript}
+		getTextField().addEventListener(
+			"keyup",
+			debounce(({ target: { value }}) =>
+				setOutput(value.toUpperCase())
+			, 300)
+		);
+	\end{minted}
+	\caption{Display the upper case value of a text field using the Observer implementation of \emph{EventTarget} if not changed for 300 milliseconds}
 	\label{lst:eventtarget}
 \end{listing}
 
-The code in Listing \ref{lst:eventtarget} shows how an event handler (the \emph{observer}) can register for events emitted by an event target (the \emph{subject}). Registered event handlers will be called one after another once the event target dispatches (\emph{notifies}) an event. The handler shown gains access to the \emph{subjects} state through the \mintinline{JavaScript}{target} property of the function parameter \mintinline{JavaScript}{e}.
-
+Since text fields implement the EventTarget interface, we are able to register a key event handler using \mintinline{JavaScript}{addEventListener} on line 1-2. We use \mintinline{JavaScript}{debounce} on line 3 and compose our actual event handler callback (line 3-4) accordingly. Doing so ensures that the actual callback will only be executed once the user stopped typing for 300 milliseconds (line 5). We get access to the text fields current value by accessing the provided \mintinline{JavaScript}{Event} parameter on line 3 and call then \mintinline{JavaScript}{setOutput} with the upper case version of the text on line 4.
 
 \section{Summary on Salvaneschi et al.}
 \label{sec:summary}
