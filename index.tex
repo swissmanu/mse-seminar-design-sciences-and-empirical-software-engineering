@@ -66,8 +66,6 @@ Since the paper under inspection compares RP with the Observer design pattern, t
 
 In the following we will first introduce and clarify important terms. Section \ref{sec:summary} then starts with a summary, Section \ref{sec:review} follows with the review of Salvaneschi et al. and answer \emph{RQ1}/\emph{RQ2.1}. The questions \emph{RQ2.2} through \emph{2.4} will be tackled in Section \ref{sec:practical-application} where we discuss earlier findings in context of frontend engineering. How Salvaneschi et al. applied statistical methods on their results are out of scope and not part of this work.
 
-We will use JavaScript (ECMAScript 2017\footnote{\url{https://www.ecma-international.org/ecma-262/8.0/}}) for all code listings in this paper exclusively.
-
 \subsection{Empirical Software Engineering}
 
 Software engineering applies engineering principles when working with software artifacts \cite{159342} throughout their life cycle. Although ``\emph{the application of a systematic, disciplined, quantifiable approach to the development (\dots) of software (\dots)}'' \cite{159342} may rightfully restrain us methodically, it is agreed upon that the process leading to a software product is of creative nature \cite{8051350} and hard to measure.
@@ -93,11 +91,7 @@ Roel J. Wieranga derives guidelines specifically for software engineering resear
 Hasselbring et al. \cite{2019arXiv190805986H} transfer these general applicable guidelines to the field of computer science research and formulate domain specific recommendations. Their key point is the request for treating software artifacts produced during a research project with the same level of care as the project report itself. Platforms like Zenodo\footnote{\url{https://zenodo.org}} in conjunction with GitHub\footnote{\url{https://github.com}} allow to reference, archive and later retrieve associated software artifacts for example.
 
 \subsection{Modern JavaScript Grammar}
-As mentioned earlier, we use the modern JavaScript dialect of ECMAScript 2017 for all code listings in our paper. We do not expect our readers to be fluent in this language and therefor provide a quick overview of the most important language features they will encounter. Skip to the next subsection if you are familiar with modern JavaScript.
-
-\begin{itemize}
-	\item TODO?
-\end{itemize}
+We will use a modern JavaScript dialect (ECMAScript 2017\footnote{\url{https://www.ecma-international.org/ecma-262/8.0/}}) for all code listings exclusively. We do not expect our readers to be fluent in this language and therefor provide a quick overview of the most important language features they will encounter in this paper in Appendix \ref{sec:modern-javascript-grammar}.
 
 \subsection{Reactive Programming}
 RP is a declarative programming paradigm. In contrary to imperative programming, declarative code describes \emph{what} should be achieved rather than \emph{how} the process leading to that result looks like. With RP, we describe values, their transformation over time and how they depend on each other \cite{8354906}. A runtime system propagates changed values to their relevant dependencies, execute declared computations and ensures always a consistent state.
@@ -107,11 +101,11 @@ The example code in Listing \ref{lst:rp-with-baconjs} uses the RP runtime of \em
 \begin{listing}[H]
 	\begin{minted}{JavaScript}
 		Bacon
-			.fromEvent(document.getElementById("input"), "keyup")
-			.map(({ target: { value }}) => value)
-			.debounce(300)
-			.map(value => value.toUpperCase())
-			.onValue(value => output.textContent = value);
+		.fromEvent(document.getElementById("input"), "keyup")
+		.map(({ target: { value }}) => value)
+		.debounce(300)
+		.map(value => value.toUpperCase())
+		.onValue(value => output.textContent = value);
 	\end{minted}
 	\caption{Display the upper case value of a text field with BaconJS if not changed for 300 Milliseconds}
 	\label{lst:rp-with-baconjs}
@@ -231,11 +225,11 @@ We can implement a solution facilitating a basic RP approach using the \mintinli
 \begin{listing}
 	\begin{minted}{JavaScript}
 		fetchProfile()
-			.then(async (profile) => {
-				const avatar = await fetchAvatar(profile);
-				return { ...profile, ...avatar };
-			})
-			.then(renderUser);
+		.then(async (profile) => {
+			const avatar = await fetchAvatar(profile);
+			return { ...profile, ...avatar };
+		})
+		.then(renderUser);
 	\end{minted}
 	\caption{Render user profile using RP with the \mintinline{JavaScript}{Promise} API}
 	\label{lst:data-flow-rp}
@@ -291,8 +285,8 @@ Listing \ref{lst:event-handling-observer} (Observer) and \ref{lst:event-handling
 \begin{listing}
 	\begin{minted}{JavaScript}
 		Bacon.fromEvent(getButton(), "click")
-			.map(() => new Date())
-			.onValue(logTime);
+		.map(() => new Date())
+		.onValue(logTime);
 	\end{minted}
 	\caption{Log time using a BaconJS \mintinline{JavaScript}{EventStream}}
 	\label{lst:event-handling-rp}
@@ -324,6 +318,29 @@ Our own experiences using RP for developing frontend applications using \emph{Rx
 \end{itemize}
 
 \appendix
+\section{Modern JavaScript Grammar}
+\label{sec:modern-javascript-grammar}
+
+\begin{listing}
+	\begin{minted}{JavaScript}
+		/* Fat Arrow Functions: */
+		// Following Definitions for fn are all equivalent:
+		function fn(a) {
+			return "foo " + a;
+		}
+		const fn = (a) => "foo " + a;
+		const fn = (a) => { return "foo " + a; }
+
+		/* Object Destructuring: */
+		const object = { foo: { bar: true } };
+
+		// Declares Variable "bar" and assigns true
+		const { foo: { bar } } = object;
+	\end{minted}
+	\caption{Modern JavaScript Grammar}
+\end{listing}
+
+
 \section{FAIR Research Principles Check List}
 
 We used this check list to ensure this paper and its complementary information confirms to FAIR research principles for software engineering research described in Section \ref{sec:fair}. It might be useful for other authors as well.
