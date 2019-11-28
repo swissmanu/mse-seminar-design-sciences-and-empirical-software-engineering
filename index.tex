@@ -45,34 +45,34 @@
 \end{centering}
 
 \section{Introduction}
-Solving unique problems through the application of software engineering principles does not automatically lead to unique solutions in general. In fact, the emergence of recurring design patterns can be observed. Salvaneschi et al. \cite{7827078} challenge the Observer design pattern \cite{gamma1995design}, having its origin in object oriented programming \emph{(OOP)}, and its impact on source code comprehensibility in comparison to the usage of reactive programming \emph{(RP)}.
+Solving unique problems through the application of software engineering principles does not lead to unique solutions in general. In fact, the emergence of recurring design patterns can be observed. Salvaneschi et al. \cite{7827078} challenge the Observer design pattern \cite{gamma1995design}, having its origin in object oriented programming \emph{(OOP)}, and its impact on source code comprehensibility in comparison to the usage of reactive programming \emph{(RP)}.
 
-We will examine \emph{``On the Positive Effect of Reactive Programming on Software Comprehension: An Empirical Study''} by Salvaneschi et al. \cite{7827078} and answer two sets of research questions. With a focus on design sciences and empirical software engineering methods, set \emph{RQ1} considers the following three questions:
+We will examine the work by Salvaneschi et al. titled \emph{``On the Positive Effect of Reactive Programming on Software Comprehension: An Empirical Study''} \cite{7827078} and answer two sets of research questions. With a focus on design sciences and empirical software engineering methods, set \emph{RQ1} considers the following three questions:
 
 \begin{itemize}
 	\item \emph{RQ1.1: Which empirical research methods, approaches and concepts were applied by Salvaneschi et al. \cite{7827078}?}
 	\item \emph{RQ1.2: Are these research methods, approaches and concepts applied well, what could have been done better?}
-	\item \emph{RQ1.3: Does the paper meet FAIR principles \cite{2019arXiv190805986H} \cite{wilkinson:2016}?}
+	\item \emph{RQ1.3: Do Salvaneschi et al. \cite{7827078} meet FAIR principles \cite{2019arXiv190805986H} \cite{wilkinson:2016} with their work?}
 \end{itemize}
 
 Since the paper under inspection compares RP with the Observer design pattern, the second question set \emph{RQ2} reviews software engineering specific aspects of that comparison:
 
 \begin{itemize}
-	\item \emph{RQ2.1: How does the paper define RP and OOP?}
+	\item \emph{RQ2.1: How do Salvaneschi et al. \cite{7827078} define RP and OOP?}
 	\item \emph{RQ2.2: When should RP be considered, and when not?}
 	\item \emph{RQ2.3: Which experiments should be conducted in future work?}
 	\item \emph{RQ2.4: Which design alternatives exist (in a particular application context)?}
 \end{itemize}
 
-The review of how Salvaneschi et al. \cite{7827078} applied statistical methods to their results is out of scope and will not be part of our paper.
+In the following we will first introduce and clarify important terms. Section \ref{sec:summary} then starts with a summary, Section \ref{sec:review} follows with the review of Salvaneschi et al. and answer \emph{RQ1}/\emph{RQ2.1}. The questions \emph{RQ2.2} through \emph{2.4} will be tackled in Section \ref{sec:practical-application} where we discuss earlier findings in context of frontend engineering. How Salvaneschi et al. applied statistical methods on their results are out of scope and not part of this work.
 
-In the following we will introduce and clarify important terms. Section \ref{sec:revisit} and \ref{sec:review} will examine the mentioned paper more closely and answer \emph{RQ1} and \emph{RQ2.1}. The questions \emph{RQ2.2} through \emph{2.4} will be tackled in Section \ref{sec:practical-application} where we discuss earlier findings in context of frontend engineering. Please note  further that if not stated differently, all code listings presented in this paper are written in JavaScript (ECMAScript 2017\footnote{\url{https://www.ecma-international.org/ecma-262/8.0/}}).
+We will use JavaScript (ECMAScript 2017\footnote{\url{https://www.ecma-international.org/ecma-262/8.0/}}) for all code listings in this paper exclusively.
 
 \subsection{Empirical Software Engineering}
 
-Software engineering applies engineering principles when working with software artifacts \cite{159342} throughout their life cycle. Although ``\emph{the application of a systematic, disciplined, quantifiable approach to the development (\dots) of software (\dots)}'' \cite{159342} may rightfully restrain us methodically, it is agreed upon that the process leading to a software product is of creative nature \cite{8051350}. It is this creative environment that keep the fundamental building blocks of software development, maintenance and operation in a constant flux of change. As tools and methods keep changing \cite{kapferer:2019:empirical}, software engineering organizations need to adapt to new circumstances often. Kapferer \cite{kapferer:2019:empirical} highlights in his introduction to empirical software engineering how the exertion of continuous quality improvement procedures like \emph{Plan/Do/Study/Act} \cite{deming} or an agile project setup like \emph{Scrum} leads to the controlled adoption of such. A reliable benchmark allows an organization to estimate feasibility of a new method or tool in advance as well as measure impact after its implementation.
+Software engineering applies engineering principles when working with software artifacts \cite{159342} throughout their life cycle. Although ``\emph{the application of a systematic, disciplined, quantifiable approach to the development (\dots) of software (\dots)}'' \cite{159342} may rightfully restrain us methodically, it is agreed upon that the process leading to a software product is of creative nature \cite{8051350} and hard to measure.
 
-Hence software engineering problems lack analytical and scientific formalism, empirical software engineering applies empirical research methods in software engineering to yield a representative benchmark for a problem domain.
+Where the software engineering process lacks scientific and analytical formalism, empirical software engineering acknowledges this by applying empirical research methods. Kapferer \cite{kapferer:2019:empirical} exemplifies the application of empirical software engineering in his introductory paper. He investigates on the similarities of the empirical research cycle and iterative quality improvement processes like \emph{Plan/Do/Study/Act} \cite{deming} or agile project setups with \emph{Scrum}.
 
 \subsection{Design Science}
 
@@ -92,6 +92,13 @@ Roel J. Wieranga derives guidelines specifically for software engineering resear
 
 Hasselbring et al. \cite{2019arXiv190805986H} transfer these general applicable guidelines to the field of computer science research and formulate domain specific recommendations. Their key point is the request for treating software artifacts produced during a research project with the same level of care as the project report itself. Platforms like Zenodo\footnote{\url{https://zenodo.org}} in conjunction with GitHub\footnote{\url{https://github.com}} allow to reference, archive and later retrieve associated software artifacts for example.
 
+\subsection{Modern JavaScript Grammar}
+As mentioned earlier, we use the modern JavaScript dialect of ECMAScript 2017 for all code listings in our paper. We do not expect our readers to be fluent in this language and therefor provide a quick overview of the most important language features they will encounter. Skip to the next subsection if you are familiar with modern JavaScript.
+
+\begin{itemize}
+	\item TODO?
+\end{itemize}
+
 \subsection{Reactive Programming}
 RP is a declarative programming paradigm. In contrary to imperative programming, declarative code describes \emph{what} should be achieved rather than \emph{how} the process leading to that result looks like. With RP, we describe values, their transformation over time and how they depend on each other \cite{8354906}. A runtime system propagates changed values to their relevant dependencies, execute declared computations and ensures always a consistent state.
 
@@ -110,8 +117,6 @@ The example code in Listing \ref{lst:rp-with-baconjs} uses the RP runtime of \em
 	\label{lst:rp-with-baconjs}
 \end{listing}
 
-
-
 \subsection{Observer Design Pattern}
 When dividing a large component into smaller sub components, we usually want these components to be as isolated as necessary so they become more reusable, hence target for loose coupling between them. Still, the new components need a way to interact with each other.
 
@@ -128,13 +133,13 @@ The \emph{EventTarget interface}\footnote{\url{https://dom.spec.whatwg.org/\#int
 The code in Listing \ref{lst:eventtarget} shows how an event handler (the \emph{observer}) can register for events emitted by an event target (the \emph{subject}). Registered event handlers will be called one after another once the event target dispatches (\emph{notifies}) an event. The handler shown gains access to the \emph{subjects} state through the \mintinline{JavaScript}{target} property of the function parameter \mintinline{JavaScript}{e}.
 
 
-\section{Revisit the Paper}
-\label{sec:revisit}
+\section{Summary on Salvaneschi et al.}
+\label{sec:summary}
 
-Salvaneschi et al. start with a broad overview on RP, its history, how it came to be and why it is determined as a trend in computer science for some time. Right from the start the term reactive application is defined as a piece of software which reacts continuously on stimuli of different origins. These events are either originated in a technical system component or triggered by a human user, for example when interacting with a GUI.
+Salvaneschi et al. start with a broad overview on RP, its history, how it came to be and why it is determined as a trend in computer science for some time. The term reactive application is defined as a piece of software which reacts continuously on stimuli of different origins. These events are either originated in a technical system component or triggered by a human user, for example when interacting with a GUI.
 
 \subsection{Motivation}
-We get a summary of the similarities and differences of RP and the Observer design pattern, chosen as representative for the OOP paradigm, within the first page. Salvaneschi et al. show benefits and potential problems of both. More concrete examples of RP and the Observer pattern are given later in Section 2. The papers main hypothesis is derived from the RP/OOP comparison, underpinned with external references: ``\emph{(...) it has been repeatedly argued that RP greatly improves over the traditional Observer pattern used in Object-oriented (OO) programming both (i) from the software design perspective as well as (ii) from the respective of facilitating comprehension of software.}'' Hence the lack of sufficient empirical evidence is then stated as motivation for the study at hand.
+The research group elaborates similarities and differences of RP and the Observer design pattern, chosen as representative for the OOP paradigm, within the first page. They show benefits and potential problems of both. More concrete examples of RP and the Observer pattern are given later in Section 2. The papers main hypothesis is derived from the RP/OOP comparison, underpinned with external references: ``\emph{(...) it has been repeatedly argued that RP greatly improves over the traditional Observer pattern used in Object-oriented (OO) programming both (i) from the software design perspective as well as (ii) from the respective of facilitating comprehension of software.}'' Hence the lack of sufficient empirical evidence is then stated as motivation for the study at hand.
 
 \subsection{Study Design}
 Salvaneschi et al. formulate the following four research questions which they then use to build their study setup upon:
@@ -165,7 +170,7 @@ The research team agrees later that the hidden complexity of the RP runtime and 
 The result evaluation is concluded with the outlook and three suggestions for potential follow-up research:
 
 \begin{itemize}
-	\item \textbf{Interpretation of the results} connects the comprehension results with related research from the field of psychology. They reference two respective three different cognitive models: \emph{top-down}, \emph{bottom-up} and the \emph{program model}. In context, each describes how a subject might perceive either RP or OOP source code. Designing a study focusing on this area would give deeper insight in how different programming concepts are understood from a psychological point of view. \textbf{REPHRASE}
+	\item Psychology knows multiple models to describe the process of ``comprehending'' a circumstance. Salvaneschi et al. reference in \textbf{interpretation of the results} three of these models (\emph{top-down}, \emph{bottom-up} and \emph{program model}). In context, each describes how a subject might perceive either RP or OOP source code. A study focusing on the psychological aspects of code comprehension could give new perspective on how code is comprehended mentally.
 	\item The \textbf{language design} (API surface area, number of combinators) plays an important role in order to make resulting code more comprehensible. The research group sees potential for further studies which investigate and compare how different languages and frameworks support or lessen the comprehensibility of RP code.
 	\item To understand how programmers work will eventually lead to improved \textbf{tool support} i.e. in IDEs. Reactive applications using RP or OOP can be visualized using a graph showing dependencies of values to each other. Hence the potential of a uniform way to interpret reactive code, no matter what paradigm it uses, might be worth of further research.
 \end{itemize}
@@ -175,7 +180,7 @@ The result evaluation is concluded with the outlook and three suggestions for po
 Within the Section \emph{Threats to Validity}, Salvaneschi et al. an overview of factors which could have pulled or pushed their results into one or another direction. They give insight in how they tried to minimize those influences, if possible. Neglecting \emph{construct} and \emph{internal validity}, the group identifies five issues related to \emph{external validity}: (i) Comparing two programming paradigms depends on an individuals programming skill level. Though a bias towards RP can be desisted, the study's result shows a favorable tendency towards RP in the end. (ii) The code examples used throughout the comprehension task try to cover the main areas of reactive applications. Hence these samples were carefully crafted to avoid giving away correct answers to easily, it is still questionable how representative for real-world applications they are. The research group members tried to minimize this threat through code reviews and iterative improvements. (iii) The experiment was conducted with student subjects solely. Though differences to more experienced developers can be considered as not significant as a cited study \cite{DiPenta} indicates. (iv) Finally the selection of Scala and REScala can be challenged to be representative for comprehending RP code overall. The selection was satisfying for this study though since the subjects were all exposed the same amount to these technologies and provides common foundation for the experiment.
 
 
-\section{Paper Review}
+\section{Review on Salvaneschi et al.}
 \label{sec:review}
 
 \subsection{Application of Empirical Research Methods}
@@ -206,7 +211,7 @@ Before the terms of RP and OOP are introduced, Salvaneschi et al. define the \em
 
 The paradigm of \textbf{Object Oriented Programming} is less prominently introduced compared to its competitor. For its usage in reactive applications, it is quickly reduced to the Observer design pattern. Though the group highlights the decoupling of the observable and its observers as positive, inversion of control and incontrollable side effects in the observers code is noted as negative drawbacks lessen the readability and predictability of resulting source code. Since Scala does not only allow functional-flavored code, OOP code examples are presented in Scala too. We were not able to determine the specific implementation of the Observer pattern used and therefore conclude that the code examples facilitate a theoretical implementation of the design pattern.
 
-Even though the paper by Salvaneschi et al. assume the Observer design pattern as common knowledge in their expert audience, we would have appreciated an introduction on the same level as RP received. The group further reduces the OOP paradigm to one sole case which is disputable. A more differentiated approach where i.e. the patterns root in OOP is noted, but then not used throughout the report as synonym for the pattern itself would have been received well.
+Even though the paper by Salvaneschi et al. assume the Observer design pattern as common knowledge in the expert audience, we would have appreciated an introduction on the same level as RP received. The group further reduces the OOP paradigm to one sole case which is disputable. A more differentiated approach where i.e. the patterns root in OOP is noted, but then not used throughout the report as synonym for the pattern itself would have been received well.
 
 \section{Practical Application of RP}
 \label{sec:practical-application}
@@ -305,7 +310,7 @@ So, when should RP used and when should the Observer design pattern be applied u
 
 \subsection{Outlook}
 
-We hypothesized about when the application of RP might be worth or when better stick with a more traditional Observer pattern based approach in the previous Subsection \ref{sec:when-rp-when-observer}. A study providing empirical insight in the matter of the presented use cases could yield valuable results to support software projects facing the question stated in RQ2.2.
+We hypothesized about when the application of RP might be worth or when better stick with a more traditional Observer pattern based approach in the previous Subsection \ref{sec:when-rp-when-observer}. A study providing empirical insight in the matter of the presented use cases could yield valuable results to support software projects facing the question stated in \emph{RQ2.2}.
 
 Our own experiences using RP for developing frontend applications using \emph{RxJS}\footnote{\url{https://rxjs.dev/}} resonates well with one of the proposed follow up topics by Salvaneschi et al.: ``\emph{Understanding how programmers work is fundamental to provide better tool support, especially IDEs, a research area which is vastly unexplored for RP.}''\cite{7827078} As the complexity of data flows, their transformations and dependencies increase, the need for better tooling grows likewise. Even though support libraries like \emph{rxjs-spy}\footnote{\url{https://cartant.github.io/rxjs-spy/}} or the inspection capabilities of \emph{BaconJS} do help up to some extent during debugging, we agree with Salvaneschi et al. that improvements in this field could boost the adoption and productivity of RP further.
 
