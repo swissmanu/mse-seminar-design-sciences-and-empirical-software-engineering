@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>Reactive Programming | Introduction</title>
   <script src="../vendor/bacon.js"></script>
+  <script src="./shared.js"></script>
 </head>
 
 <body>
@@ -21,13 +22,12 @@
     </p>
   </section>
   <script defer>
-    const output = document.getElementById("output");
     Bacon
-      .fromEvent(document.getElementById("input"), "keyup")
-      .map(({ target: { value }}) => value)
+      .fromEvent(getTextField(), "keyup")
       .debounce(300)
+      .map(({ target: { value }}) => value)
       .map(value => value.toUpperCase())
-      .onValue(value => output.textContent = value);
+      .onValue(value => setOutput(value));
   </script>
 </body>
 

@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Observer Design Pattern | Introduction</title>
+  <script src="./shared.js"></script>
 </head>
 
 <body>
@@ -12,10 +13,32 @@
     <h2>Observer Design Pattern</h2>
   </header>
   <section>
-    Click anywhere and inspect the console in your developer tools.
+    <p>
+      <input id="input" type="text" />
+    </p>
+    <p>
+      Output (debounced): <span id="output" />
+    </p>
   </section>
-  <script>
-    window.addEventListener("click", e => console.log("click", e.target));
+  <script defer>
+    function debounce(fn, delay) {
+      let timeoutHandle;
+
+      return function() {
+        if (timeoutHandle) {
+          clearTimeout(timeoutHandle);
+        }
+
+        const scope = this;
+        const parameters = arguments;
+        timeoutHandle = setTimeout(() => fn.apply(scope, parameters), delay);
+      }
+    }
+
+    getTextField().addEventListener(
+      "keyup",
+      debounce(({ target: { value } }) => setOutput(value.toUpperCase()), 300)
+    );
   </script>
 </body>
 

@@ -274,7 +274,7 @@ Whereas Listing \ref{lst:data-flow-observer} leverages an implementation of the 
 \textbf{TODO Revisit and check if this example is good/deep enough} The second use case is rather simple in its formulation, though represents the recurring common task of handling user interaction events when building a frontend application.
 
 \begin{framed}
-	\noindent\emph{UC2 Event Handling:} When a user clicks the button, add the current time to a list showing the time of all logged button clicks.
+	\noindent\emph{UC2 Event Handling:} Handle clicks on a button available through \mintinline{JavaScript}{getButton}. Every time a user clicks the button, add the current timestamp to a list using \mintinline{JavaScript}{logTime}. The list shows all timestamps the user clicked the button eventually.
 \end{framed}
 
 Listing \ref{lst:event-handling-observer} (Observer) and \ref{lst:event-handling-rp} (RP) both show a simplistic solution for UC2. Though both look in essence similar, the RP implementation using \emph{BaconJS} implies a lot of additional work behind the scene: \mintinline{JavaScript}{fromEvent} creates an \mintinline{JavaScript}{EventStream} which is connected to click events of the button. The \mintinline{JavaScript}{EventStream} emits every event, generates a \mintinline{JavaScript}{Date} using the \mintinline{JavaScript}{map} combinator and finally calls \mintinline{JavaScript}{logTime}. Embracing the Observer design pattern without any detour, \ref{lst:event-handling-observer} registers an Observer using \mintinline{JavaScript}{addEventListener} and calls \mintinline{JavaScript}{logTime} straight away.
@@ -323,28 +323,6 @@ Our own experiences using RP for developing frontend applications using \emph{Rx
 \end{itemize}
 
 \appendix
-\section{Modern JavaScript Grammar}
-\label{sec:modern-javascript-grammar}
-
-\begin{listing}
-	\begin{minted}{JavaScript}
-		/* Fat Arrow Functions: */
-		// Following Definitions for fn are all equivalent:
-		function fn(a) {
-			return "foo " + a;
-		}
-		const fn = (a) => "foo " + a;
-		const fn = (a) => { return "foo " + a; }
-
-		/* Object Destructuring: */
-		const object = { foo: { bar: true } };
-
-		// Declares Variable "bar" and assigns true
-		const { foo: { bar } } = object;
-	\end{minted}
-	\caption{Modern JavaScript Grammar}
-\end{listing}
-
 
 \section{FAIR Research Principles Check List}
 
@@ -353,6 +331,57 @@ We used this check list to ensure this paper and its complementary information c
 \begin{framed}
 	\noindent\emph{Idea: A quick check list for a software engineering research paper/study to comply with suggested FAIR research principles}
 \end{framed}
+
+\section{Modern JavaScript Grammar}
+\label{sec:modern-javascript-grammar}
+
+\subsection{Fat Arrow Functions (Lambda Expressions)}
+\begin{listing}[H]
+	\begin{minted}{JavaScript}
+		// Following three function definitions are equivalent:
+		function fn(a) {
+			return "foo " + a;
+		}
+		const fn = (a) => "foo " + a;
+		const fn = (a) => { return "foo " + a; }
+	\end{minted}
+	\caption{Fat Arrow Functions}
+\end{listing}
+
+\subsection{Object Destructuring}
+\begin{listing}[H]
+	\begin{minted}{JavaScript}
+		const object = { foo: { bar: true } };
+
+		// Destructuring of a variable:
+		const { foo: { bar } } = object;
+		console.log(bar); // Outputs true
+
+		// Destructuring of function parameter:
+		function fn({ foo: { bar } }) {
+			return bar;
+		}
+		fn(object); // Returns true
+	\end{minted}
+	\caption{Object Destructuring}
+\end{listing}
+
+\subsection{Async/Await Syntactic Sugar for Promises}
+\begin{listing}[H]
+	\begin{minted}{JavaScript}
+		// Following two functions are equivalent:
+		function fn(promise) {
+			return promise.then(result => value.toUpperCase)
+		}
+
+		function async fn(promise) {
+			const value = await promise;
+			return value.toUpperCase();
+		}
+	\end{minted}
+	\caption{Async/Await Syntactic Suger for Promises}
+\end{listing}
+
 
 \bibliographystyle{splncs04}
 \bibliography{index}
