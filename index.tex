@@ -133,7 +133,7 @@ The Observer pattern \cite{gamma1995design} is deeply rooted in OOP and defines 
 
 Since text fields implement the EventTarget interface, we are able to register a key event handler using \mintinline{JavaScript}{addEventListener} on line 1-2. We use \mintinline{JavaScript}{debounce} on line 3 and compose our actual event handler callback (line 3-4) accordingly. Doing so ensures that the actual callback will only be executed once the user stopped typing for 300 milliseconds (line 5). We get access to the text fields current value by accessing the provided \mintinline{JavaScript}{Event} parameter on line 3 and call then \mintinline{JavaScript}{setOutput} with the upper case version of the text on line 4.
 
-\section{Summary on Salvaneschi et al.}
+\section{Summary of Salvaneschi et al.}
 \label{sec:summary}
 
 Salvaneschi et al. start with a broad overview on RP, its history, how it came to be and why it is determined as a trend in computer science for some time. The term reactive application is defined as a piece of software which reacts continuously on stimuli of different origins. These events are either originated in a technical system component or triggered by a human user, for example when interacting with a GUI.
@@ -180,7 +180,7 @@ The result evaluation is concluded with the outlook and three suggestions for po
 Within the Section \emph{Threats to Validity}, Salvaneschi et al. an overview of factors which could have pulled or pushed their results into one or another direction. They give insight in how they tried to minimize those influences, if possible. Neglecting \emph{construct} and \emph{internal validity}, the group identifies five issues related to \emph{external validity}: (i) Comparing two programming paradigms depends on an individuals programming skill level. Though a bias towards RP can be desisted, the study's result shows a favorable tendency towards RP in the end. (ii) The code examples used throughout the comprehension task try to cover the main areas of reactive applications. Hence these samples were carefully crafted to avoid giving away correct answers to easily, it is still questionable how representative for real-world applications they are. The research group members tried to minimize this threat through code reviews and iterative improvements. (iii) The experiment was conducted with student subjects solely. Though differences to more experienced developers can be considered as not significant as a cited study \cite{DiPenta} indicates. (iv) Finally the selection of Scala and REScala can be challenged to be representative for comprehending RP code overall. The selection was satisfying for this study though since the subjects were all exposed the same amount to these technologies and provides common foundation for the experiment.
 
 
-\section{Review on Salvaneschi et al.}
+\section{Review of Salvaneschi et al.}
 \label{sec:review}
 
 \subsection{Application of Empirical Research Methods}
