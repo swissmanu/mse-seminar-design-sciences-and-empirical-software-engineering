@@ -1,13 +1,14 @@
 const profileObservable = observable();
 const avatarObservable = observable();
 
-avatarObservable.addObserver(observable => {
-  renderUser({ ...profileObservable.value, ...observable.value });
-});
-profileObservable.addObserver(async ({ value: profile }) => {
-  const avatar = await fetchAvatar(profile);
+profileObservable.addObserver(async () => {
+  const avatar = await fetchAvatar(profileObservable.value);
   avatarObservable.value = avatar;
   avatarObservable.notify();
+});
+
+avatarObservable.addObserver(() => {
+  renderUser({ ...profileObservable.value, ...avatarObservable.value });
 });
 
 fetchProfile().then(profile => {
