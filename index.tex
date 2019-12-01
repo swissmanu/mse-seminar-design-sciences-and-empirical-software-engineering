@@ -61,7 +61,7 @@ Since the paper under inspection compares RP with the Observer design pattern, t
 	\item \emph{RQ2.1: How do Salvaneschi et al. \cite{7827078} define RP and OOP?}
 	\item \emph{RQ2.2: When should RP be considered, and when not?}
 	\item \emph{RQ2.3: Which experiments should be conducted in future work?}
-	\item \emph{RQ2.4: Which design alternatives exist (in a particular application context)?}
+	\item \emph{RQ2.4: Which design alternatives exist in the context of frontend engineering?}
 \end{itemize}
 
 In the following we will first introduce and clarify important terms. Section \ref{sec:summary} then starts with a summary, Section \ref{sec:review} follows with the review of Salvaneschi et al. and answer \emph{RQ1}/\emph{RQ2.1}. The questions \emph{RQ2.2} through \emph{2.4} will be tackled in Section \ref{sec:practical-application} where we discuss earlier findings in context of frontend engineering. How Salvaneschi et al. applied statistical methods on their results are out of scope and not part of this work.
@@ -170,7 +170,7 @@ The research team agrees later that the hidden complexity of the RP runtime and 
 The result evaluation is concluded with the outlook and three suggestions for potential follow-up research:
 
 \begin{itemize}
-	\item Psychology knows multiple models to describe the process of ``comprehending'' a circumstance. Salvaneschi et al. reference in \textbf{interpretation of the results} three of these models (\emph{top-down}, \emph{bottom-up} and \emph{program model}). In context, each describes how a subject might perceive either RP or OOP source code. A study focusing on the psychological aspects of code comprehension could give new perspective on how code is comprehended mentally.
+	\item Psychology knows multiple models to describe the process of ``comprehending'' a circumstance. Salvaneschi et al. reference in \textbf{interpretation of the results} three of these models (\emph{top-down}, \emph{bottom-up} and \emph{program model}). In context, each describes how a subject might perceive either RP or OOP source code. A study focusing on the psychological aspects of code comprehension could give a new perspective on how code, RP or OOP likewise, is perceived mentally.
 	\item The \textbf{language design} (API surface area, number of combinators) plays an important role in order to make resulting code more comprehensible. The research group sees potential for further studies which investigate and compare how different languages and frameworks support or lessen the comprehensibility of RP code.
 	\item To understand how programmers work will eventually lead to improved \textbf{tool support} i.e. in IDEs. Reactive applications using RP or OOP can be visualized using a graph showing dependencies of values to each other. Hence the potential of a uniform way to interpret reactive code, no matter what paradigm it uses, might be worth of further research.
 \end{itemize}
@@ -215,7 +215,7 @@ Even though Salvaneschi et al. assume in their paper the Observer design pattern
 \section{Practical Application of RP}
 \label{sec:practical-application}
 
-The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well for graphical animations. Hence all of these problems can ultimately be implemented with RP and the Observer pattern likewise, there is no measure given when the alluded tradeoffs like the additional layer of abstraction (RP) or inversion of control (Observer) outweigh gained benefits. We will show that there is no case for making RP nor the Observer design pattern the ``only one right'' solution for every situation and answer \emph{RQ2.2 ``When should RP be considered, and when not?''} accordingly in context of frontend engineering.
+The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well for graphical animations. Hence all of these problems can ultimately be implemented with RP and the Observer pattern likewise, there is no measure given when the alluded tradeoffs like the additional layer of abstraction (RP) or inversion of control (Observer) outweigh gained benefits. In order to answer the research question \emph{RQ2.2 ``When should RP be considered, and when not?''}, we will present two technical use cases in context of frontend engineering in the following.
 
 \subsection{Modelling Data Flow}
 
@@ -227,22 +227,22 @@ The case describes a common problem where the information from a remote resource
 
 We can implement a solution facilitating a basic RP approach using the \mintinline{JavaScript}{Promise}\footnote{\url{https://www.ecma-international.org/ecma-262/6.0/\#sec-promise-objects}} API available in modern JavaScript runtime environments as exemplified in Listing \ref{lst:data-flow-rp}.
 
-\begin{listing}
+\begin{listing}[H]
 	\begin{minted}{JavaScript}
 		fetchProfile()
-		.then(async (profile) => {
-			const avatar = await fetchAvatar(profile);
-			return { ...profile, ...avatar };
-		})
-		.then(renderUser);
+			.then(async (profile) => {
+				const avatar = await fetchAvatar(profile);
+				return { ...profile, ...avatar };
+			})
+			.then(renderUser);
 	\end{minted}
 	\caption{Render user profile using RP with the \mintinline{JavaScript}{Promise} API}
 	\label{lst:data-flow-rp}
 \end{listing}
 
-Whereas Listing \ref{lst:data-flow-observer} leverages an implementation of the Observer design pattern after Gamma et al. \cite{gamma1995design}, \ref{lst:data-flow-rp} uses an RP approach. Hence both provide the same functionality in the end. By solely inspecting the line count of both implementations, we fully confirm the results of Salvaneschi et al. \cite{7827078} regarding added boilerplate code. The RP solution reflects the mental model of fetching one resource after another clearly whereas the Observer needs to implement code for handling \mintinline{JavaScript}{fetchAvatar}s result (line 12) before \mintinline{JavaScript}{fetchProfile} is even called (line 17).
+Whereas Listing \ref{lst:data-flow-observer} leverages an implementation of the Observer design pattern after Gamma et al. \cite{gamma1995design}, Listing \ref{lst:data-flow-rp} uses an RP approach. Hence both provide the same functionality in the end. By solely inspecting the line count of both implementations, we fully confirm the results of Salvaneschi et al. \cite{7827078} regarding added boilerplate code. The RP solution reflects the mental model of fetching one resource after another clearly whereas the Observer needs to implement code for handling \mintinline{JavaScript}{fetchAvatar}s result (line 12) before \mintinline{JavaScript}{fetchProfile} is even called (line 17).
 
-\begin{listing}
+\begin{listing}[H]
 	\begin{minted}{JavaScript}
 		const profileObservable = observable();
 		const avatarObservable = observable();
@@ -279,7 +279,7 @@ Whereas Listing \ref{lst:data-flow-observer} leverages an implementation of the 
 
 Listing \ref{lst:event-handling-observer} (Observer) and \ref{lst:event-handling-rp} (RP) both show a simplistic solution for UC2. Though both look in essence similar, the RP implementation using \emph{BaconJS} implies a lot of additional work behind the scene: \mintinline{JavaScript}{fromEvent} creates an \mintinline{JavaScript}{EventStream} which is connected to click events of the button. The \mintinline{JavaScript}{EventStream} emits every event, generates a \mintinline{JavaScript}{Date} using the \mintinline{JavaScript}{map} combinator and finally calls \mintinline{JavaScript}{logTime}. Embracing the Observer design pattern without any detour, \ref{lst:event-handling-observer} registers an Observer using \mintinline{JavaScript}{addEventListener} and calls \mintinline{JavaScript}{logTime} straight away.
 
-\begin{listing}
+\begin{listing}[H]
 	\begin{minted}{JavaScript}
 		getButton().addEventListener("click", () => logTime(new Date()));
 	\end{minted}
@@ -287,11 +287,11 @@ Listing \ref{lst:event-handling-observer} (Observer) and \ref{lst:event-handling
 	\label{lst:event-handling-observer}
 \end{listing}
 
-\begin{listing}
+\begin{listing}[H]
 	\begin{minted}{JavaScript}
 		Bacon.fromEvent(getButton(), "click")
-		.map(() => new Date())
-		.onValue(logTime);
+			.map(() => new Date())
+			.onValue(logTime);
 	\end{minted}
 	\caption{Log time using a BaconJS \mintinline{JavaScript}{EventStream}}
 	\label{lst:event-handling-rp}
@@ -303,7 +303,7 @@ Listing \ref{lst:event-handling-observer} (Observer) and \ref{lst:event-handling
 
 With UC1 and UC2 we saw two examples how RP and the Observer design pattern can lead to solutions for the same problem. UC1 confirms the most important findings regarding benefits of RP by Salvaneschi et al.: Boilerplate code is reduced significantly and the declarative way of describing data flows improves on the comprehensibility of the source code. We can affirm this further by our own experience during the construction of the examples: Refactoring the Observer based code was more prone to runtime errors because of its fragmented nature.
 
-UC2 contrasts with UC1 strongly by intention. The problem is more simplistic on one hand, on the other it might look unfair to apply RP on an API already leveraging the Observer pattern like \mintinline{JavaScript}{EventTarget} does. Indeed we argue that applying RP just for the sake of it is dangerous on the long run. Introducing hidden complexity (\mintinline{JavaScript}{EventStream} generated by \mintinline{JavaScript}{fromEvent}) does not improve the source code itself nor its comprehensibility in any way. In fact it will eventually make debugging problems harder down the road.
+UC2 contrasts with UC1 strongly by intention. The problem is more simplistic on one hand, on the other it might look unfair to apply RP on an API already leveraging the Observer pattern like \mintinline{JavaScript}{EventTarget} does. Indeed we argue that applying RP just for the sake of it is dangerous on the long run. Introducing hidden complexity (i.e. creating an \mintinline{JavaScript}{EventStream} using \mintinline{JavaScript}{fromEvent}) does not improve the source code itself nor its comprehensibility in any way. In fact it will eventually make debugging problems harder down the road.
 
 So, when should RP used and when should the Observer design pattern be applied ultimately? We refuse to take position for one or the other. Hence we support that RP code is more comprehensible when it comes to the description of complex succession of data transformations over time as Salvaneschi et al. proofed in their study. In contrary we also cannot approve its blind application for every problem given. As exemplified with UC2 previously, there are situations where the Observer pattern has its benefits over RP too.
 
@@ -348,6 +348,19 @@ We used this check list to ensure this paper and its complementary information c
 	\caption{Fat Arrow Functions}
 \end{listing}
 
+\subsection{Spread Operator}
+\begin{listing}[H]
+	\begin{minted}{JavaScript}
+		const objectA = { foo: "bar" };
+		const objectB = { baz: true };
+
+		// "Spread"/combine objectA and objectB to result:
+		const result = { ...objectA, ...objectB };
+		console.log(result); // Outputs { foo: "bar", baz: true }
+	\end{minted}
+	\caption{Spread Operator}
+\end{listing}
+
 \subsection{Object Destructuring}
 \begin{listing}[H]
 	\begin{minted}{JavaScript}
@@ -371,7 +384,7 @@ We used this check list to ensure this paper and its complementary information c
 	\begin{minted}{JavaScript}
 		// Following two functions are equivalent:
 		function fn(promise) {
-			return promise.then(result => value.toUpperCase)
+			return promise.then(result => value.toUpperCase())
 		}
 
 		function async fn(promise) {
