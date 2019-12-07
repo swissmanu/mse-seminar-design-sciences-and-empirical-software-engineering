@@ -215,15 +215,15 @@ Even though Salvaneschi et al. assume in their paper the Observer design pattern
 \section{Practical Application of RP}
 \label{sec:practical-application}
 
-The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well for graphical animations. Hence all of these problems can ultimately be implemented with RP and the Observer pattern likewise, there is no measure given when the alluded tradeoffs like the additional layer of abstraction (RP) or inversion of control (Observer) outweigh gained benefits. In order to answer the research question \emph{RQ2.2 ``When should RP be considered, and when not?''}, we will present two technical use cases in context of frontend engineering in the following.
+The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well for graphical animations. Hence all of these problems can ultimately be implemented with RP and the Observer pattern likewise, there is no measure given when the alluded tradeoffs like the additional layer of abstraction (RP) or inversion of control (Observer) outweigh gained benefits. In order to answer the research question \emph{RQ2.2 ``When should RP be considered, and when not?''}, we will present two technical scenarios in context of frontend engineering in the following.
 
 \subsection{Modelling Data Flow}
 
 \begin{framed}
-	\noindent\emph{UC1 Data Flow:} Fetch a users complete profile information (first- and surname as well as their avatar picture) from two distinct data sources (\mintinline{JavaScript}{fetchProfile} and \mintinline{JavaScript}{fetchAvatar}). The profile information contains required input to fetch the avatar. Show the combined information in the UI at once using \mintinline{JavaScript}{renderUser}.
+	\noindent\emph{S1 Data Flow:} Fetch a users complete profile information (first- and surname as well as their avatar picture) from two distinct data sources (\mintinline{JavaScript}{fetchProfile} and \mintinline{JavaScript}{fetchAvatar}). The profile information contains required input to fetch the avatar. Show the combined information in the UI at once using \mintinline{JavaScript}{renderUser}.
 \end{framed}
 
-The case describes a common problem where the information from a remote resource needs to be combined with another one. The situation gets a bit more complex when the result of the first resource is required as input for the second one. Generally spoken, a solution to this problem describes the flow (fetch one resource after the other) and transformation (combination of both results) of data. After the classification for reactive applications as defined by Salvaneschi et al. \cite{7827078}, UC1 describes a \emph{synthetic application}.
+The first scenario describes a common problem where the information from a remote resource needs to be combined with another one. The situation gets a bit more complex when the result of the first resource is required as input for the second one. Generally spoken, a solution to this problem describes the flow (fetch one resource after the other) and transformation (combination of both results) of data. After the classification for reactive applications as defined by Salvaneschi et al. \cite{7827078}, S1 describes a \emph{synthetic application}.
 
 We can implement a solution facilitating a basic RP approach using the \mintinline{JavaScript}{Promise}\footnote{\url{https://www.ecma-international.org/ecma-262/6.0/\#sec-promise-objects}} API available in modern JavaScript runtime environments as exemplified in Listing \ref{lst:data-flow-rp}:
 
@@ -277,13 +277,20 @@ By sole comparison of the line count of both presented solutions, the results of
 
 \subsection{Event Handling}
 
-\textbf{TODO Revisit and check if this example is good/deep enough} The second use case is rather simple in its formulation, though represents the recurring common task of handling user interaction events when building a frontend application.
+Breadcrumb
+One-To-Many Communication
+Where do the changes come from?
+	Stream
+
+
+
+\textbf{TODO Revisit and check if this example is good/deep enough} The second scenario is rather simple in its formulation, though represents the recurring common task of handling user interaction events when building a frontend application.
 
 \begin{framed}
-	\noindent\emph{UC2 Event Handling:} Handle clicks on a button available through \mintinline{JavaScript}{getButton}. Every time a user clicks the button, add the current timestamp to a list using \mintinline{JavaScript}{logTime}. The list shows all timestamps the user clicked the button eventually.
+	\noindent\emph{S2 Event Handling:} Handle clicks on a button available through \mintinline{JavaScript}{getButton}. Every time a user clicks the button, add the current timestamp to a list using \mintinline{JavaScript}{logTime}. The list shows all timestamps the user clicked the button eventually.
 \end{framed}
 
-Listing \ref{lst:event-handling-observer} (Observer) and \ref{lst:event-handling-rp} (RP) both show a simplistic solution for UC2. Though both look in essence similar, the RP implementation using \emph{BaconJS} implies a lot of additional work behind the scene: \mintinline{JavaScript}{fromEvent} creates an \mintinline{JavaScript}{EventStream} which is connected to click events of the button. The \mintinline{JavaScript}{EventStream} emits every event, generates a \mintinline{JavaScript}{Date} using the \mintinline{JavaScript}{map} combinator and finally calls \mintinline{JavaScript}{logTime}. Embracing the Observer design pattern without any detour, \ref{lst:event-handling-observer} registers an Observer using \mintinline{JavaScript}{addEventListener} and calls \mintinline{JavaScript}{logTime} straight away.
+Listing \ref{lst:event-handling-observer} (Observer) and \ref{lst:event-handling-rp} (RP) both show a simplistic solution for S2. Though both look in essence similar, the RP implementation using \emph{BaconJS} implies a lot of additional work behind the scene: \mintinline{JavaScript}{fromEvent} creates an \mintinline{JavaScript}{EventStream} which is connected to click events of the button. The \mintinline{JavaScript}{EventStream} emits every event, generates a \mintinline{JavaScript}{Date} using the \mintinline{JavaScript}{map} combinator and finally calls \mintinline{JavaScript}{logTime}. Embracing the Observer design pattern without any detour, \ref{lst:event-handling-observer} registers an Observer using \mintinline{JavaScript}{addEventListener} and calls \mintinline{JavaScript}{logTime} straight away.
 
 \begin{listing}[H]
 	\begin{minted}{JavaScript}
@@ -307,15 +314,15 @@ Listing \ref{lst:event-handling-observer} (Observer) and \ref{lst:event-handling
 \subsection{When RP? When Observer?}
 \label{sec:when-rp-when-observer}
 
-With UC1 and UC2 we saw two examples how RP and the Observer design pattern can lead to solutions for the same problem. UC1 confirms the most important findings regarding benefits of RP by Salvaneschi et al.: Boilerplate code is reduced significantly and the declarative way of describing data flows improves on the comprehensibility of the source code. We can affirm this further by our own experience during the construction of the examples: Refactoring the Observer based code was more prone to runtime errors because of its fragmented nature.
+With S1 and S2 we saw two examples how RP and the Observer design pattern can lead to solutions for the same problem. S1 confirms the most important findings regarding benefits of RP by Salvaneschi et al.: Boilerplate code is reduced significantly and the declarative way of describing data flows improves on the comprehensibility of the source code. We can affirm this further by our own experience during the construction of the examples: Refactoring the Observer based code was more prone to runtime errors because of its fragmented nature.
 
-UC2 contrasts with UC1 strongly by intention. The problem is more simplistic on one hand, on the other it might look unfair to apply RP on an API already leveraging the Observer pattern like \mintinline{JavaScript}{EventTarget} does. Indeed we argue that applying RP just for the sake of it is dangerous on the long run. Introducing hidden complexity (i.e. creating an \mintinline{JavaScript}{EventStream} using \mintinline{JavaScript}{fromEvent}) does not improve the source code itself nor its comprehensibility in any way. In fact it will eventually make debugging problems harder down the road.
+S2 contrasts with S1 strongly by intention. The problem is more simplistic on one hand, on the other it might look unfair to apply RP on an API already leveraging the Observer pattern like \mintinline{JavaScript}{EventTarget} does. Indeed we argue that applying RP just for the sake of it is dangerous on the long run. Introducing hidden complexity (i.e. creating an \mintinline{JavaScript}{EventStream} using \mintinline{JavaScript}{fromEvent}) does not improve the source code itself nor its comprehensibility in any way. In fact it will eventually make debugging problems harder down the road.
 
-So, when should RP used and when should the Observer design pattern be applied ultimately? We refuse to take position for one or the other. Hence we support that RP code is more comprehensible when it comes to the description of complex succession of data transformations over time as Salvaneschi et al. proofed in their study. In contrary we also cannot approve its blind application for every problem given. As exemplified with UC2 previously, there are situations where the Observer pattern has its benefits over RP too.
+So, when should RP used and when should the Observer design pattern be applied ultimately? We refuse to take position for one or the other. Hence we support that RP code is more comprehensible when it comes to the description of complex succession of data transformations over time as Salvaneschi et al. proofed in their study. In contrary we also cannot approve its blind application for every problem given. As exemplified with S2 previously, there are situations where the Observer pattern has its benefits over RP too.
 
 \subsection{Outlook}
 
-We hypothesised about when the application of RP might be worth or when better stick with a more traditional Observer pattern based approach in the previous Subsection \ref{sec:when-rp-when-observer}. A study providing empirical insight in the matter of the presented use cases could yield valuable results to support software projects facing the question stated in \emph{RQ2.2}.
+We hypothesised about when the application of RP might be worth or when better stick with a more traditional Observer pattern based approach in the previous Subsection \ref{sec:when-rp-when-observer}. A study providing empirical insight in the matter of the presented scenarios could yield valuable results to support software projects facing the question stated in \emph{RQ2.2}.
 
 Our own experiences using RP for developing frontend applications using \emph{RxJS}\footnote{\url{https://rxjs.dev/}} resonates well with one of the proposed follow up topics by Salvaneschi et al.: ``\emph{Understanding how programmers work is fundamental to provide better tool support, especially IDEs, a research area which is vastly unexplored for RP.}''\cite{7827078} As the complexity of data flows, their transformations and dependencies increase, the need for better tooling grows likewise. Even though support libraries like \emph{rxjs-spy}\footnote{\url{https://cartant.github.io/rxjs-spy/}} or the inspection capabilities of \emph{BaconJS} do help up to some extent during debugging, we agree with Salvaneschi et al. that improvements in this field could boost the adoption and productivity of RP further.
 
