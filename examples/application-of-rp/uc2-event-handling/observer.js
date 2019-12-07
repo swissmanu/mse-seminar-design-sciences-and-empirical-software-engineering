@@ -1,1 +1,1 @@
-getButton().addEventListener("click", () => logTime(new Date()));
+getButton().addEventListener("click", () => logInteraction(new Date()));

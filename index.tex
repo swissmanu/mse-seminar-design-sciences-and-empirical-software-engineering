@@ -275,40 +275,41 @@ After two observables for profile and avatar information are created (lines 1-2)
 
 By sole comparison of the line count of both presented solutions, the results of Salvaneschi et al. \cite{7827078} regarding reduced boilerplate code through RP are confirmed. Whereas the Observer example needs to implement code for handling \mintinline{JavaScript}{fetchProfile}s result (line 5) before the function itself is even called (line 17), the RP implementation reflects the mental model of fetching one depending resource after its predecessor more concisely further.
 
-\subsection{Event Handling}
+\subsection{Handle User Interaction}
 
-Breadcrumb
-One-To-Many Communication
-Where do the changes come from?
-	Stream
-
-
-
-\textbf{TODO Revisit and check if this example is good/deep enough} The second scenario is rather simple in its formulation, though represents the recurring common task of handling user interaction events when building a frontend application.
+The \emph{interactive application} \cite{Salvaneschi:2014:ESP:2635868.2635895} described in the second scenario is rather simple in its formulation, though represents the recurring common task of handling user interaction events when building a frontend application:
 
 \begin{framed}
-	\noindent\emph{S2 Event Handling:} Handle clicks on a button available through \mintinline{JavaScript}{getButton}. Every time a user clicks the button, add the current timestamp to a list using \mintinline{JavaScript}{logTime}. The list shows all timestamps the user clicked the button eventually.
+	\noindent\emph{S2 Handle User Interaction:} Handle clicks on a button available through \mintinline{JavaScript}{getButton}. Every time a user clicks the button, log the current time using \mintinline{JavaScript}{logInteraction}. The log shows a list of all user interactions eventually.
 \end{framed}
 
-Listing \ref{lst:event-handling-observer} (Observer) and \ref{lst:event-handling-rp} (RP) both show a simplistic solution for S2. Though both look in essence similar, the RP implementation using \emph{BaconJS} implies a lot of additional work behind the scene: \mintinline{JavaScript}{fromEvent} creates an \mintinline{JavaScript}{EventStream} which is connected to click events of the button. The \mintinline{JavaScript}{EventStream} emits every event, generates a \mintinline{JavaScript}{Date} using the \mintinline{JavaScript}{map} combinator and finally calls \mintinline{JavaScript}{logTime}. Embracing the Observer design pattern without any detour, \ref{lst:event-handling-observer} registers an Observer using \mintinline{JavaScript}{addEventListener} and calls \mintinline{JavaScript}{logTime} straight away.
+Listing \ref{lst:event-handling-observer} shows a straight forward implementation for this problem in an arbitrary browser using the builtin, Observer based \mintinline{JavaScript}{EventTarget} interface.
 
 \begin{listing}[H]
 	\begin{minted}{JavaScript}
-		getButton().addEventListener("click", () => logTime(new Date()));
+		getButton().addEventListener("click", () => logInteraction(new Date()));
 	\end{minted}
-	\caption{Log time using \mintinline{JavaScript}{EventTarget} interface}
+	\caption{Log user interaction using \mintinline{JavaScript}{EventTarget} interface}
 	\label{lst:event-handling-observer}
 \end{listing}
+
+After the handle on the button was acquired using \mintinline{JavaScript}{getButton}, a callback function is registered as observer using \mintinline{JavaScript}{addEventListener}. This function will be executed each time the button emits a click event, hence the user clicked the button. By doing so, \mintinline{JavaScript}{logInteraction} will be called with the current time represented by a new instance of \mintinline{JavaScript}{Date}.
+
+An RP based solution using \emph{BaconJS} is shown in the following Listing \ref{lst:event-handling-rp}:
 
 \begin{listing}[H]
 	\begin{minted}{JavaScript}
 		Bacon.fromEvent(getButton(), "click")
 			.map(() => new Date())
-			.onValue(logTime);
+			.onValue(logInteraction);
 	\end{minted}
-	\caption{Log time using a BaconJS \mintinline{JavaScript}{EventStream}}
+	\caption{Log user interaction using a BaconJS \mintinline{JavaScript}{EventStream}}
 	\label{lst:event-handling-rp}
 \end{listing}
+
+Similar to the Observer design pattern approach shown in Listing \ref{lst:event-handling-observer} where we used \mintinline{JavaScript}{addEventListener} to register an observer, we use \mintinline{JavaScript}{fromEvent} to hook up to click events of the button provided by \mintinline{JavaScript}{getButton} on line 1. Here, \mintinline{JavaScript}{fromEvent} creates an \mintinline{JavaScript}{EventStream}\footnote{\url{https://baconjs.github.io/api3/classes/eventstream.html}} of click events. Each of these events get transformed to a new \mintinline{JavaScript}{Date} instance using the the \mintinline{JavaScript}{map} combinator (line 2). Line 3 subscribes to these \mintinline{JavaScript}{Date} instances by passing \mintinline{JavaScript}{logInteraction} as subscriber to \mintinline{JavaScript}{onValue} which will log the users button interactions.
+
+Both the Observer and RP based implementation show a simplistic solution for S2. Though each look similar in essence, the RP approach using \emph{BaconJS} implies a lot of additional work behind the scene since it has to create and maintain the \mintinline{JavaScript}{EventStream} abstraction. Embracing the Observer design pattern without any detour, Listing \ref{lst:event-handling-observer} registers its observer using \mintinline{JavaScript}{addEventListener} straight away and implements necessary logic to call \mintinline{JavaScript}{logInteraction} in place.
 
 
 \subsection{When RP? When Observer?}

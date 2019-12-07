@@ -1,4 +1,4 @@
-function logTime(time) {
+function logInteraction(time) {
   const log = document.getElementById("log");
   const entry = document.createElement("li");
   entry.textContent = time.toUTCString();
