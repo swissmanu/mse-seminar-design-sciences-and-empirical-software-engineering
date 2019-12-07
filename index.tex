@@ -2,6 +2,7 @@
 \usepackage{ccicons}
 \usepackage{hyperref}
 \usepackage{minted}
+\usepackage{tabularx}
 
 \setminted{autogobble=true, tabsize=2, linenos=true, frame=single, breaklines=true}
 
@@ -321,6 +322,10 @@ With S1 and S2 we saw two examples how RP and the Observer design pattern can le
 S2 contrasts with S1 strongly by intention. The problem is more simplistic on one hand, on the other it might look unfair to apply RP on an API already leveraging the Observer pattern like \mintinline{JavaScript}{EventTarget} does. Indeed we argue that applying RP just for the sake of it is dangerous on the long run. Introducing hidden complexity (i.e. creating an \mintinline{JavaScript}{EventStream} using \mintinline{JavaScript}{fromEvent}) does not improve the source code itself nor its comprehensibility in any way. In fact it will eventually make debugging problems harder down the road.
 
 So, when should RP used and when should the Observer design pattern be applied ultimately? We refuse to take position for one or the other. Hence we support that RP code is more comprehensible when it comes to the description of complex succession of data transformations over time as Salvaneschi et al. proofed in their study. In contrary we also cannot approve its blind application for every problem given. As exemplified with S2 previously, there are situations where the Observer pattern has its benefits over RP too.
+
+\subsection{Alternatives}
+
+The W3C DOM API uses the Observer design pattern with the \mintinline{JavaScript}{EventTarget} interface extensively as we demonstrated repeatedly. The JavaScript \mintinline{JavaScript}{Promise} leverages RP for its API and can be used to describe asynchronous operations since the wide adoption of the specification by major browsers and JavaScript engines. We are convinced that neither the Observer pattern nor RP are easily to be replaced in the field of frontend engineering. We were further not able to identify any trends for a concrete alternative at the time of writing this paper.
 
 \subsection{Outlook}
 
