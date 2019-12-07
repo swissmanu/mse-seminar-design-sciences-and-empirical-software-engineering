@@ -122,16 +122,17 @@ The Observer pattern \cite{gamma1995design} is deeply rooted in OOP and defines 
 	\begin{minted}{JavaScript}
 		getTextField().addEventListener(
 			"keyup",
-			debounce(({ target: { value }}) =>
-				setOutput(value.toUpperCase())
-			, 300)
+			debounce(
+				({ target: { value }}) => setOutput(value.toUpperCase()),
+				300
+			)
 		);
 	\end{minted}
 	\caption{Display the upper case value of a text field using the Observer implementation of \emph{EventTarget} if not changed for 300 milliseconds}
 	\label{lst:eventtarget}
 \end{listing}
 
-Since text fields implement the EventTarget interface, we are able to register a key event handler using \mintinline{JavaScript}{addEventListener} on line 1-2. We use \mintinline{JavaScript}{debounce} on line 3 and compose our actual event handler callback (line 3-4) accordingly. Doing so ensures that the actual callback will only be executed once the user stopped typing for 300 milliseconds (line 5). We get access to the text fields current value by accessing the provided \mintinline{JavaScript}{Event} parameter on line 3 and call then \mintinline{JavaScript}{setOutput} with the upper case version of the text on line 4.
+Since text fields implement the EventTarget interface, we are able to register a key event handler using \mintinline{JavaScript}{addEventListener} on line 1-2. We use \mintinline{JavaScript}{debounce} on line 3 and compose our actual event handler callback (line 4) accordingly. Doing so ensures that the actual callback will only be executed once the user stopped typing for 300 milliseconds (line 5). We get access to the text fields current value by accessing the provided \mintinline{JavaScript}{Event} parameter on line 3 and call then \mintinline{JavaScript}{setOutput} with the upper case version of the text on line 4.
 
 \section{Summary of Salvaneschi et al.}
 \label{sec:summary}
@@ -210,20 +211,20 @@ Before the terms of RP and OOP are introduced, Salvaneschi et al. define the the
 
 The paradigm of \textbf{Object Oriented Programming} is less prominently introduced compared to its competitor. For its usage in reactive applications, it is quickly reduced to the Observer design pattern. Though the group highlights the decoupling of the observable and its observers as positive, inversion of control and incontrollable side effects in the observers code is noted as negative drawbacks lessen the readability and predictability of resulting source code. Since Scala does not only allow functional-flavored code, OOP code examples are presented in Scala too. We were not able to determine the specific implementation of the Observer pattern used and therefore conclude that the code examples facilitate a theoretical implementation of the design pattern.
 
-Even though Salvaneschi et al. assume in their paper the Observer design pattern as common knowledge in the expert audience, we would have appreciated an introduction on the same level as RP received. The group further reduces the OOP paradigm to one sole case which is disputable. A more differentiated approach where i.e. the patterns root in OOP is noted, but then not used throughout the report as synonym for the pattern itself would have been received well.
+Even though Salvaneschi et al. assume in their paper the Observer design pattern as common knowledge in their expert audience, we would have appreciated an introduction on the same level as RP received. The group further reduces the OOP paradigm to one sole case which is disputable. A more differentiated approach where i.e. the patterns root in OOP is noted, but then not used throughout the report as synonym for the pattern itself would have been received well.
 
 \section{Practical Application of RP}
 \label{sec:practical-application}
 
-The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well for graphical animations. Hence all of these problems can ultimately be implemented with RP and the Observer pattern likewise, there is no measure given when the alluded tradeoffs like the additional layer of abstraction (RP) or inversion of control (Observer) outweigh gained benefits. In order to answer the research question \emph{RQ2.2 ``When should RP be considered, and when not?''}, we will present two technical scenarios in context of frontend engineering in the following.
+The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well as for graphical animations \cite{7827078}. Hence all of these problems can ultimately be implemented with RP and the Observer pattern likewise, there is no measure given when the alluded tradeoffs like the additional layer of abstraction (RP) or inversion of control (Observer) outweigh gained benefits. In order to answer the research question \emph{RQ2.2 ``When should RP be considered, and when not?''}, we will present two technical scenarios in context of frontend engineering for synthetic and interactive applications in the following. Libraries like \emph{react-spring}\footnote{\url{https://www.react-spring.io/}} provide APIs and tools based on RP principles enabling complex animation behaviors. Since effective graphical animations in frontend engineering are most commonly implemented using CSS animations\footnote{\url{https://drafts.csswg.org/css-animations-1/}} though, we will not investigate further in comparing the Observer pattern and RP in regards of graphical animations.
 
 \subsection{Modelling Data Flow}
 
 \begin{framed}
-	\noindent\emph{S1 Data Flow:} Fetch a users complete profile information (first- and surname as well as their avatar picture) from two distinct data sources (\mintinline{JavaScript}{fetchProfile} and \mintinline{JavaScript}{fetchAvatar}). The profile information contains required input to fetch the avatar. Show the combined information in the UI at once using \mintinline{JavaScript}{renderUser}.
+	\noindent\emph{S1 Modelling Data Flow:} Fetch a users complete profile information (first- and surname as well as their avatar picture) from two distinct data sources (\mintinline{JavaScript}{fetchProfile} and \mintinline{JavaScript}{fetchAvatar}). The profile information contains required input to fetch the avatar. Show the combined information in the UI at once using \mintinline{JavaScript}{renderUser}.
 \end{framed}
 
-The first scenario describes a common problem where the information from a remote resource needs to be combined with another one. The situation gets a bit more complex when the result of the first resource is required as input for the second one. Generally spoken, a solution to this problem describes the flow (fetch one resource after the other) and transformation (combination of both results) of data. After the classification for reactive applications as defined by Salvaneschi et al. \cite{7827078}, S1 describes a \emph{synthetic application}.
+The first scenario of a \emph{synthetic application} \cite{7827078} describes a common problem where the information from a remote resource needs to be combined with another one. The situation gets a bit more complex when the result of the first resource is required as input for the second one. Generally spoken, a solution to this problem describes the flow (fetch one resource after the other) and transformation (combination of both results) of data.
 
 We can implement a solution facilitating a basic RP approach using the \mintinline{JavaScript}{Promise}\footnote{\url{https://www.ecma-international.org/ecma-262/6.0/\#sec-promise-objects}} API available in modern JavaScript runtime environments as exemplified in Listing \ref{lst:data-flow-rp}:
 
@@ -277,7 +278,7 @@ By sole comparison of the line count of both presented solutions, the results of
 
 \subsection{Handle User Interaction}
 
-The \emph{interactive application} \cite{Salvaneschi:2014:ESP:2635868.2635895} described in the second scenario is rather simple in its formulation, though represents the recurring common task of handling user interaction events when building a frontend application:
+The \emph{interactive application} \cite{7827078} described in the second scenario is rather simple in its formulation, though represents the recurring common task of handling user interaction events when building a frontend application:
 
 \begin{framed}
 	\noindent\emph{S2 Handle User Interaction:} Handle clicks on a button available through \mintinline{JavaScript}{getButton}. Every time a user clicks the button, log the current time using \mintinline{JavaScript}{logInteraction}. The log shows a list of all user interactions eventually.
@@ -337,14 +338,6 @@ Our own experiences using RP for developing frontend applications using \emph{Rx
 \end{itemize}
 
 \appendix
-
-\section{FAIR Research Principles Check List}
-
-We used this check list to ensure this paper and its complementary information confirms to FAIR research principles for software engineering research described in Section \ref{sec:fair}. It might be useful for other authors as well.
-
-\begin{framed}
-	\noindent\emph{Idea: A quick check list for a software engineering research paper/study to comply with suggested FAIR research principles}
-\end{framed}
 
 \section{Modern JavaScript Grammar}
 \label{sec:modern-javascript-grammar}
