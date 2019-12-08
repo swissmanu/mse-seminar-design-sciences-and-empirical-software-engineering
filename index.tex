@@ -217,7 +217,7 @@ Even though Salvaneschi et al. assume in their paper the Observer design pattern
 \section{Application in Frontend Engineering}
 \label{sec:practical-application}
 
-The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well as for graphical animations \cite{7827078}. Hence all of these problems can ultimately be implemented with RP and the Observer pattern likewise, there is no measure given when the alluded tradeoffs like the additional layer of abstraction (RP) or inversion of control (Observer) outweigh gained benefits. In order to answer the research question \emph{RQ2.2 ``When should RP be considered, and when not?''}, we will present two technical scenarios in context of frontend engineering for synthetic and interactive applications in the following. The current draft of the Web Animations API\footnote{\url{https://drafts.csswg.org/web-animations/}} or various libraries (i.e. \emph{react-spring}\footnote{\url{https://www.react-spring.io/}}) provide interfaces based on RP principles enabling sophisticated animation behaviors. Since effective graphical animations in frontend engineering are most commonly done using CSS Animations\footnote{\url{https://drafts.csswg.org/css-animations-1/}} up to today though, we will not compare the Observer pattern and RP in regards of graphical animations any further.
+The previously reviewed paper by Salvaneschi et al. explores how RP changes the comprehensibility of code for synthetic and interactive applications as well as for graphical animations \cite{7827078}. Hence all of these problems can ultimately be implemented with RP and the Observer pattern likewise, there is no measure given when the alluded tradeoffs like the additional layer of abstraction (RP) or inversion of control (Observer) outweigh gained benefits. In order to answer the research question \emph{RQ2.2 ``When should RP be considered, and when not?''}, we will present two technical scenarios in context of frontend engineering for synthetic and interactive applications in the following. The current draft of the Web Animations API\footnote{\url{https://drafts.csswg.org/web-animations/}} by the World Wide Web Consortium \emph{(W3C)} or various libraries (i.e. \emph{react-spring}\footnote{\url{https://www.react-spring.io/}}) provide interfaces based on RP principles enabling sophisticated animation behaviors. Since high-performance graphical animations in frontend engineering are most commonly done using CSS Animations\footnote{\url{https://drafts.csswg.org/css-animations-1/}} up to today though, we will not compare the Observer pattern and RP in regards of graphical animations any further.
 
 \subsection{Modelling Data Flow}
 
@@ -341,36 +341,29 @@ This absence of any solid argumentation leaves the individual engineer facing th
 
 \subsection{Alternatives}
 
-The W3C DOM API uses the Observer design pattern with the \mintinline{JavaScript}{EventTarget} interface extensively as we demonstrated repeatedly. The JavaScript \mintinline{JavaScript}{Promise} leverages RP for its API and can be used to describe asynchronous operations since the wide adoption of its specification by major browsers and JavaScript engines. We are convinced that neither the Observer pattern nor RP are easily to be replaced in the field of frontend engineering. We were further not able to identify any trends for a concrete alternative at the time of writing this paper.
+The DOM API uses the Observer design pattern with the \mintinline{JavaScript}{EventTarget} interface extensively as we demonstrated repeatedly. The JavaScript \mintinline{JavaScript}{Promise} leverages RP for its API and can be used to describe asynchronous operations since the wide adoption of its specification by major browsers and JavaScript engines. We are convinced that neither the Observer pattern nor RP are easily to be replaced in the field of frontend engineering. We were further not able to identify any trends for a concrete alternative at the time of writing this paper.
 
 \subsection{Outlook}
 
 We hypothesised about when the application of RP might be worth or when better stick with a more traditional Observer pattern based approach in the previous Subsection \ref{sec:when-rp-when-observer}. A study providing empirical insight in the matter of the presented scenarios and decision criteria in Table \ref{tab:criteria} could yield valuable results to support software projects facing the question stated in \emph{RQ2.2}.
 
-
-The implementation of high-performance graphical animations in frontend engineering is usually done with CSS Animations today. It allows the implementation of simple transitions in an easy way. More complex animations which need to be synchronized to the applications logic demand for more sophisticated APIs than CSS Animations provides. JavaScript libraries like \emph{react-spring} do provide such RP based APIs today, though cannot calculate animated values as CPU efficient as the browsers CSS engine can. The W3C has a promising draft for the Web Animations API in development. We are sure this would be an interesting area for future research.
+The implementation of high-performance graphical animations in frontend engineering is usually done with CSS Animations today. It allows the implementation of simple transitions in an easy way. More complex animations which need to be synchronized to the applications logic demand for more sophisticated APIs than CSS Animations provides. JavaScript libraries like \emph{react-spring} do provide such RP based APIs today, though cannot calculate animated values as efficient as the browsers own CSS engine can. The W3C has a promising draft for the Web Animations API in development. We are certain that this would be an interesting area for future research.
 
 Our own experiences using RP for developing frontend applications using \emph{RxJS}\footnote{\url{https://rxjs.dev/}} resonates well with one of the proposed follow up topics by Salvaneschi et al.: ``\emph{Understanding how programmers work is fundamental to provide better tool support, especially IDEs, a research area which is vastly unexplored for RP.}'' \cite{7827078} As the complexity of data flows, their transformations and dependencies increase, the need for better tooling grows likewise. Even though support libraries like \emph{rxjs-spy}\footnote{\url{https://cartant.github.io/rxjs-spy/}} or the inspection capabilities of \emph{BaconJS} do help up to some extent during debugging, we agree with Salvaneschi et al. that improvements in this field could boost the adoption and productivity of RP further.
 
 \section{Conclusion}
 
-With this paper we revisited the study of Salvaneschi et al. \cite{7827078}. We did a review of their work in context of design sciences and empirical software engineering. Furthermore we looked into how their documentation withstands the FAIR research principles and what could be improved in regards of the amendments for computer science research projects proposed by Hasselbring et al. \cite{2019arXiv190805986H}.
+With this paper we revisited the study of Salvaneschi et al. \cite{7827078}. We did a review of their work in context of design sciences and empirical software engineering. Furthermore we looked into how their documentation withstands the FAIR research principles and what could be improved in regards of the amendments for computer science research projects proposed by Hasselbring et al. \cite{2019arXiv190805986H}. With Section \ref{sec:practical-application} we finally transferred the work of Salvaneschi et al. to the context of todays frontend engineering. We demonstrated how a solution for two distinct scenarios can be implemented using the Observer design pattern and RP likewise. Because we refused to give fixed recommendations when to use which paradigm or pattern, we presented a criteria catalog with questions serving as a starter for the decision finding process. Section \ref{sec:practical-application} concludes with the proposal of three topics for further research: (i) A study to validate presented scenarios and decision criteria in order to support software projects, (ii) the examination of the W3C draft for the Web Animations API allowing complex high-performance animations and (iii) investing in improved RP debug tooling supporting engineers working in this area.
 
+After writing this paper we decided to make the third topic subject to our own future research in order to gain the masters degree.
 
-\begin{itemize}
-	\item Revisit Paper Review
-	\item Revisit Practical Application of rp
-	\item Revisit Outlook (When to use and debugging tooling)
-	\item Mention FAIR Check List in Appendix
-	\item Closing Words
-\end{itemize}
 
 \appendix
 
 \section{Modern JavaScript Grammar}
 \label{sec:modern-javascript-grammar}
 
-\subsection{Fat Arrow Functions (Lambda Expressions)}
+\subsection{Arrow Functions (Lambda Expressions)}
 \begin{listing}[H]
 	\begin{minted}{JavaScript}
 		// Following three function definitions are equivalent:
