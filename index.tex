@@ -229,7 +229,7 @@ The first scenario of a \emph{synthetic application} \cite{7827078} describes a 
 
 We can implement a solution facilitating a basic RP approach using the \mintinline{JavaScript}{Promise}\footnote{\url{https://www.ecma-international.org/ecma-262/6.0/\#sec-promise-objects}} API available in modern JavaScript runtime environments as exemplified in Listing \ref{lst:data-flow-rp}:
 
-\begin{listing}
+\begin{listing}[H]
 	\begin{minted}{JavaScript}
 		fetchProfile()
 			.then(async (profile) => {
@@ -246,7 +246,7 @@ The execution of \mintinline{JavaScript}{fetchProfile} on line 1 returns a \mint
 
 Listing \ref{lst:data-flow-observer} leverages a custom implementation of the Observer design pattern after Gamma et al. \cite{gamma1995design}, providing the same level of functionality as Listing \ref{lst:data-flow-rp} did using RP.
 
-\begin{listing}[H]
+\begin{listing}[ht]
 	\begin{minted}{JavaScript}
 		const profileObservable = observable();
 		const avatarObservable = observable();
@@ -287,7 +287,7 @@ The \emph{interactive application} \cite{7827078} described in the second scenar
 
 Listing \ref{lst:event-handling-observer} shows a straight forward implementation for this problem in an arbitrary browser using the built-in, Observer based \mintinline{JavaScript}{EventTarget} interface.
 
-\begin{listing}[H]
+\begin{listing}[ht]
 	\begin{minted}{JavaScript}
 		getButton().addEventListener("click", () => logInteraction(new Date()));
 	\end{minted}
@@ -325,7 +325,7 @@ So, when should RP used and when should the Observer design pattern be applied u
 
 This absence of any solid argumentation leaves the individual engineer facing the choice between the Observer pattern and RP with a lot of room for interpretation. We attempt to improve on this situation by providing a set of criteria with Table \ref{tab:criteria}. Each criterion states one or more questions. We do not intend to give simple \emph{``if-this-then-that''} recipes. Instead, the questions sole purpose is to give a starting point for a impartial decision finding process.
 
-\begin{table}[H]
+\begin{table}[ht]
 	\begin{tabularx}{\textwidth}{ |l|X| }
 		\hline
 		\textbf{Cardinality}      & How many components consume emitted values? Are there many? Is there only one? \\ \hline
@@ -357,6 +357,8 @@ With this paper we revisited the study of Salvaneschi et al. \cite{7827078}. We 
 
 After writing this paper we decided to make the third topic subject to our own future research in order to gain the masters degree.
 
+
+\pagebreak
 
 \appendix
 
