@@ -106,7 +106,7 @@
 \begin{frame}[fragile=singleslide]{Reactive Programming II}
 	\textbf{TODO: Create Graphic}
 
-	\begin{block}{Reactive Programming with BaconJS}
+	\begin{block}{Reactive Programming with BaconJS\footnote{\url{http://baconjs.github.io/}}}
 		\begin{minted}{JavaScript}
 			const currentDateString = Bacon
 				.fromPoll(1000, () => new Date())
@@ -210,7 +210,7 @@
 	\begin{exampleblock}{Reactive Programming}
 		\begin{itemize}
 			\item Good overview noting \textbf{origins} in FP and \textbf{recent} development
-			\item \textbf{Examples} using Scala and REScala
+			\item \textbf{Examples} using Scala
 		\end{itemize}
 	\end{exampleblock}
 
@@ -223,14 +223,168 @@
 \end{frame}
 
 
-\section{Transfer to\\Frontend Engineering}
+\section*{Application in\texorpdfstring{\\}{ }Frontend Engineering}
 
-\begin{frame}
+\subsection*{Synthetic Application}
+\begin{frame}{Synthetic Application: Scenario}
+	\begin{columns}
+		\column{0.6\textwidth}
+			\begin{itemize}
+				\item \textbf{Fetch} and \textbf{combine remote} profile and avatar \textbf{resource}\bigskip
+				\item Avatar \textbf{depends} on profile resource\bigskip
+			\end{itemize}
 
+		\column{0.4\textwidth}
+			\begin{block}{S1: \textbf{Modelling Data Flow}}
+				\textbf{Fetch} a users \textbf{complete} profile \textbf{information} (name as well as their avatar picture) from \textbf{two} distinct \textbf{data sources}. The \textbf{profile} information \textbf{contains} required input to fetch the \textbf{avatar}. \textbf{Show} the combined information in the user interface \textbf{at once}.
+			\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Synthetic Application: Reactive Programming}
+	\begin{block}{Modelling Data Flow with Promises}
+		\begin{minted}{JavaScript}
+			fetchProfile()
+				.then(async (profile) => {
+					const avatar = await fetchAvatar(profile);
+					return { ...profile, ...avatar };
+				})
+				.then(renderUser);
+		\end{minted}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Synthetic Application: Observer Pattern}
+	\begin{block}{Modelling Data Flow with Observer Design Pattern \cite{gamma1995design} I}
+		\begin{minted}{JavaScript}
+			const profileObservable = observable();
+			const avatarObservable = observable();
+		\end{minted}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Synthetic Application: Observer Pattern}
+	\begin{block}{Modelling Data Flow with Observer Design Pattern \cite{gamma1995design} II}
+		\begin{minted}{JavaScript}
+			profileObservable.addObserver(async () => {
+				const a = await fetchAvatar(profileObservable.value);
+				avatarObservable.value = a;
+				avatarObservable.notify();
+			});
+
+			avatarObservable.addObserver(() => {
+				renderUser({
+					...profileObservable.value,
+					...avatarObservable.value
+				});
+			});
+		\end{minted}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Synthetic Application: Observer Pattern}
+	\begin{block}{Modelling Data Flow with Observer Design Pattern \cite{gamma1995design} III}
+		\begin{minted}{JavaScript}
+			fetchProfile().then(profile => {
+				profileObservable.value = profile;
+				profileObservable.notify();
+			});
+		\end{minted}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Synthetic Application: Key Findings}
+	\begin{itemize}
+		\item \textbf{Key findings} in favor of reactive programming by Salvaneschi et al. \cite{7827078} \textbf{confirmed}:\smallskip
+		\begin{itemize}
+			\item \textbf{Less boilerplate} code\smallskip
+			\item \textbf{Mental model} can be implemented \textbf{more accurately}
+		\end{itemize}\bigskip
+		\item \textbf{Reactive programming} is \textbf{better} suited for the implementation of \textbf{synthetic applications}
+	\end{itemize}
+\end{frame}
+
+\subsection*{Interactive Application}
+\begin{frame}[t]{Interactive Application}
+	\begin{columns}[t]
+		\column{0.5\textwidth}
+			\begin{itemize}
+				\item \textbf{Handle} user \textbf{interaction} with a user interface \textbf{component}
+			\end{itemize}
+
+		\column{0.5\textwidth}
+			\begin{block}{S2: \textbf{Handle User Interaction}}
+				Handle clicks on a button. \textbf{Every time} a \textbf{user clicks} the \textbf{button}, \textbf{log} the current \textbf{time}. The log shows a list of all user interactions eventually.
+			\end{block}
+	\end{columns}
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Interactive Application: Reactive Programming}
+	\begin{block}{Handle User Interaction with BaconJS}
+		\begin{minted}{JavaScript}
+			Bacon.fromEvent(getButton(), "click")
+				.map(() => new Date())
+				.onValue(logInteraction);
+		\end{minted}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}[fragile=singleslide]{Interactive Application: Observer Pattern}
+	\begin{block}{Handle User Interaction with EventTarget Interface}
+		\begin{minted}{JavaScript}
+			getButton().addEventListener(
+				"click",
+				() => logInteraction(new Date())
+			);
+		\end{minted}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Interactive Application: Key Findings}
+	\begin{itemize}
+		\item \textbf{Both} solutions have similar \textbf{small code footprint}\bigskip
+		\item \textbf{Reactive programming} variation introduces \textbf{hidden complexity}\bigskip
+		\item \textbf{Do not use} any paradigm simply \textbf{for the sake of it}
+	\end{itemize}
+\end{frame}
+
+\subsection*{Criteria Catalog}
+\begin{frame}[focus]
+	When Should I\\Use What?!
+\end{frame}
+
+\begin{frame}[fragile=singleslide]{Criteria Catalog}
+	\begin{figure}
+		\includegraphics[width=\textwidth]{assets/slides/criteria-catalog.png}
+	\end{figure}
+\end{frame}
+
+\section{Outlook}
+\begin{frame}{Future Research Suggestions}
+	\begin{enumerate}
+		\item \textbf{Verify} presented \textbf{scenarios} and \textbf{criteria catalog} in an empirical study\bigskip
+		\item \textbf{Explore W3C Web Animation API} draft for more complex, high-performance animation behaviors\bigskip
+		\item Research to \textbf{improve} development \textbf{tool support} for \textbf{reactive programming}
+	\end{enumerate}
 \end{frame}
 
 
 \section{Conclusion}
+\begin{frame}{Recap}
+	\begin{itemize}
+		\item \textbf{Summary and review} on paper by Salvaneschi et al. \cite{7827078}\bigskip
+		\item \textbf{Transferred} results by Salvaneschi et al. \textbf{to} context of \textbf{frontend engineering}\bigskip
+		\item \textbf{Suggested three} potential \textbf{topics} for future research
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\begin{center}
+		\emph{We selected ``Research to improve development tool support for reactive programming'' as topic for our own future research.}
+	\end{center}
+\end{frame}
+
 \begin{frame}[focus]
 	Questions?
 \end{frame}
