@@ -10,7 +10,7 @@
 \institute{Master Seminar\\HSR University of Applied Sciences Rapperswil}
 \date{}
 
-\setminted{autogobble=true, tabsize=2, linenos=false, frame=single, breaklines=true}
+\setminted{autogobble=true, tabsize=2, linenos=false, frame=none, breaklines=true}
 
 \begin{document}
 
@@ -27,15 +27,15 @@
 
 \begin{frame}{Motivation and Goals}
 	\begin{itemize}
-		\item Get acquainted with scientific research work style\bigskip
-		\item Review a research report\bigskip
-		\item Transfer topic to the field of frontend engineering\bigskip
-		\item Write a research report\bigskip
+		\item Get \textbf{acquainted} with \textbf{scientific research work style}\bigskip
+		\item \textbf{Review} a research report\bigskip
+		\item \textbf{Transfer} topic to the \textbf{field} of \textbf{frontend engineering}\bigskip
+		\item \textbf{Write} a research report\bigskip
 	\end{itemize}
 \end{frame}
 
 \begin{frame}[focus]
-	``On the Positive Effect of Reactive Programming on Software Comprehension: An Empirical Study''
+	\emph{``On the Positive Effect of Reactive Programming on Software Comprehension: An Empirical Study''}
 	\\\bigskip
 	\small{Salvaneschi et al. \cite{7827078}}
 \end{frame}
@@ -44,19 +44,19 @@
 \subsection*{Research Questions}
 
 \begin{frame}{RQ1: Design Sciences and \\Empirical Software Engineering}
-	\begin{itemize}
-		\item \textbf{RQ1.1} Which empirical research methods, approaches and concepts were applied by Salvaneschi et al. \cite{7827078}?\bigskip
-		\item \textbf{RQ1.2} Are these research methods, approaches and concepts applied well, what could have been done better?\bigskip
-		\item \textbf{RQ1.3} Do Salvaneschi et al. \cite{7827078} meet FAIR principles \cite{2019arXiv190805986H} \cite{wilkinson:2016} with their work?
-	\end{itemize}
+	\begin{enumerate}
+		\item[RQ1.1] Which \textbf{empirical research methods}, approaches and concepts \textbf{were applied} by Salvaneschi et al. \cite{7827078}?\bigskip
+		\item[RQ1.2] Are these research methods, approaches and concepts \textbf{applied well}, what could have been done better?\bigskip
+		\item[RQ1.3] \textbf{Do} Salvaneschi et al. \cite{7827078} \textbf{meet FAIR principles} \cite{2019arXiv190805986H} \cite{wilkinson:2016} with their work?
+	\end{enumerate}
 \end{frame}
 
 \begin{frame}{RQ2: Software Engineering Principles}
 	\begin{itemize}
-		\item \textbf{RQ2.1} How do Salvaneschi et al. \cite{7827078} define RP and OOP?\bigskip
-		\item \textbf{RQ2.2} When should RP be considered, and when not?\bigskip
-		\item \textbf{RQ2.3} Which experiments should be conducted in future work?\bigskip
-		\item \textbf{RQ2.4} Which design alternatives exist in the context of frontend engineering?
+		\item[RQ2.1] \textbf{How} do Salvaneschi et al. \cite{7827078} \textbf{define RP and OOP}?\bigskip
+		\item[RQ2.2] \textbf{When} should \textbf{RP be considered}, and \textbf{when not}?\bigskip
+		\item[RQ2.3] \textbf{Which experiments} should be \textbf{conducted in future} work?\bigskip
+		\item[RQ2.4] \textbf{Which} design \textbf{alternatives exist} in the context of \textbf{frontend engineering}?
 	\end{itemize}
 \end{frame}
 
@@ -71,11 +71,11 @@
 \end{frame}
 
 \subsection*{Design Sciences}
-\begin{frame}{Design Sciences}
+\begin{frame}{Design Sciences \cite{wieringa}}
 	\begin{itemize}
-		\item Research principle to grow research projects\bigskip
-		\item Design and investigate on artifacts in a specific context\bigskip
-		\item Iterate until stakeholders are satisfied
+		\item Research \textbf{principle} to \textbf{grow} research \textbf{projects}\bigskip
+		\item \textbf{Design} and \textbf{investigate} on \textbf{artifacts} in a specific \textbf{context}\bigskip
+		\item \textbf{Iterate} until \textbf{stakeholders} are satisfied
 	\end{itemize}
 
 	\begin{figure}
@@ -84,7 +84,7 @@
 \end{frame}
 
 \subsection*{FAIR Research Principles}
-\begin{frame}{FAIR Research Principles}
+\begin{frame}{FAIR Research Principles \cite{wilkinson:2016} \cite{2019arXiv190805986H}}
 	\begin{itemize}
 		\item \textbf{F}indability\bigskip
 		\item \textbf{A}ccessibility\bigskip
@@ -96,20 +96,24 @@
 \subsection*{Reactive Programming}
 \begin{frame}{Reactive Programming I}
 	\begin{itemize}
-		\item Declarative programming paradigm\bigskip
+		\item \textbf{Declarative} programming paradigm\bigskip
 		\item Originated in functional programming\bigskip
-		\item Describe values, their transformation and how they depend on each other over time\bigskip
+		\item API to describe \textbf{values}, their \textbf{transformation} and how they \textbf{depend} on each other over time\bigskip
+		\item \textbf{Runtime} environment maintaining \textbf{consistency}
 	\end{itemize}
 \end{frame}
 
 \begin{frame}[fragile=singleslide]{Reactive Programming II}
 	\textbf{TODO: Create Graphic}
 
-	\begin{minted}{JavaScript}
-		const currentDateString = Bacon
-			.fromPoll(1000, () => new Date())
-			.map(d => d.toISOString());
-	\end{minted}
+	\begin{block}{Reactive Programming with BaconJS}
+		\begin{minted}{JavaScript}
+			const currentDateString = Bacon
+				.fromPoll(1000, () => new Date())
+				.map(d => d.toISOString());
+		\end{minted}
+	\end{block}
+
 \end{frame}
 
 \subsection*{Observer Design Pattern}
@@ -117,7 +121,7 @@
 	\begin{columns}[t, onlytextwidth]
 		\column{0.5\textwidth}
 			\begin{itemize}
-				\item Decouple components while maintaining communication between them\bigskip
+				\item \textbf{Decouple} components while \textbf{maintaining communication} between them\bigskip
 				\item Originated in object oriented programming\bigskip
 			\end{itemize}
 
@@ -126,13 +130,98 @@
 	\end{columns}
 \end{frame}
 
+
+
+\section{Summary of Salvaneschi et al.}
+
+\begin{frame}[focus]
+	``\emph{(...) it has been repeatedly argued that RP greatly improves (...) comprehension of software.}''
+	\\\bigskip
+	\small{Salvaneschi et al. \cite{7827078}}
+\end{frame}
+
+\begin{frame}{Research Questions \cite{7827078}}
+	\begin{itemize}
+		\item \emph{``Does reactive programming \textbf{impact the correctness} of program comprehension?''}\bigskip
+		\item \emph{``Does reactive programming \textbf{impact time} for program comprehension?''}\bigskip
+		\item \emph{``Does comprehending RP programs \textbf{require a different programming skills level} than the OO style?''}\bigskip
+		\item \emph{``What are the \textbf{reasons for a difference} - if a any - in comprehending RP programs and OO programs?''}
+	\end{itemize}
+\end{frame}
+
+\subsection*{Study Design}
+\begin{frame}{Study Design}
+	\begin{itemize}
+		\item Subject \textbf{population} of a total of \textbf{127} students\bigskip
+		\item Preparatory, quantitative programming \textbf{skill level survey}\bigskip
+		\item \textbf{Controlled experiment} with two groups: RP vs. OOP\bigskip
+		\item Quantitative/qualitative \textbf{survey} to collect \textbf{personal opinion}
+	\end{itemize}
+\end{frame}
+
+\subsection*{Study Results}
+\begin{frame}{Study Results}
+
+	\begin{block}{Finding 1: \textbf{Correctness}}
+		RP \textbf{increases} the \textbf{correctness} of program \textbf{comprehension}
+	\end{block}
+	\begin{block}{Finding 2: \textbf{Time}}
+		RP style code \textbf{does not} require \textbf{more time} than comprehending its OOP equivalent
+	\end{block}
+	\begin{block}{Finding 3: \textbf{Skill Level}}
+		RP code is \textbf{easier to understand} overall, \textbf{regardless} of the individuals programming \textbf{skill level}
+	\end{block}
+\end{frame}
+
+\subsection*{Outlook}
+\begin{frame}{Outlook}
+	\begin{enumerate}
+		\item \textbf{Interpretation} of collected results in context of \textbf{psychological research}\bigskip
+		\item \textbf{Impact} of \textbf{language design} on RP \textbf{comprehensibility}\bigskip
+		\item \textbf{Improvements} on \textbf{IDE support} for development of \textbf{reactive applications}
+	\end{enumerate}
+\end{frame}
+
+
 \section{Review of Salvaneschi et al.}
+\subsection*{Research Principle Score Card}
+\begin{frame}{Research Principle Score Card}
+	\begin{exampleblock}{Empirical Software Engineering}
+		\begin{itemize}
+			\item \textbf{Careful} study \textbf{setup} and \textbf{execution}
+			\item \textbf{Transparent} description of \textbf{threats to validity}
+		\end{itemize}
+	\end{exampleblock}
 
-\subsection{Study Overview}
+	\begin{alertblock}{Design Sciences}
+		\textbf{No evidence} for the \textbf{application} of \textbf{design sciences} found
+	\end{alertblock}
 
-\subsection{Study Result Overview}
+	\begin{alertblock}{FAIR Research Principles}
+		Lack of \textbf{complementary information} violates \textbf{Reusability} principle
+	\end{alertblock}
+\end{frame}
 
-\subsection{Review Results}
+\subsection*{Software Engineering Score Card}
+\begin{frame}{Software Engineering Score Card}
+	\begin{exampleblock}{Reactive Applications}
+		Introduction of classification schema: \textbf{Synthetic} and \textbf{interactive} applications, \textbf{graphical animations}
+	\end{exampleblock}
+	\begin{exampleblock}{Reactive Programming}
+		\begin{itemize}
+			\item Good overview noting \textbf{origins} in FP and \textbf{recent} development
+			\item \textbf{Examples} using Scala and REScala
+		\end{itemize}
+	\end{exampleblock}
+
+	\begin{alertblock}{Object Oriented Programming}
+		\begin{itemize}
+			\item \textbf{Limited overview} compared to RP
+			\item \textbf{Reduced} to Observer Pattern, still \textbf{used synonymously}
+		\end{itemize}
+	\end{alertblock}
+\end{frame}
+
 
 \section{Transfer to\\Frontend Engineering}
 
@@ -151,8 +240,7 @@
 \end{frame}
 
 \appendix
-% \begin{frame}[allowframebreaks]{References}
-\begin{frame}{References}
+\begin{frame}[allowframebreaks]{References}
 	\bibliographystyle{plain}
 	\bibliography{bibliography}
 \end{frame}
