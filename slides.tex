@@ -1,7 +1,11 @@
 \documentclass{beamer}
+\usepackage{pgfpages}
+\setbeameroption{show notes on second screen}
+
 \usepackage{ccicons}
 \usepackage{hyperref}
 \usepackage{minted}
+
 
 % ❤️ https://github.com/elauksap/focus-beamertheme
 \usetheme{focus}
@@ -19,6 +23,10 @@
 	\Tiny{\ccby\thinspace\thinspace This work is licensed under a \href{https://creativecommons.org/licenses/by/4.0/}{Creative Commons Attribution 4.0 International License}}.
 \end{frame}
 
+\note[itemize]{
+	\item Welcome To My Talk
+}
+
 % \begin{frame}{Overview}
 % 	\tableofcontents
 % \end{frame}
@@ -34,12 +42,26 @@
 	\end{itemize}
 \end{frame}
 
+\note[itemize]{
+	\item This was my first seminar paper done
+	\item Given goals summarized:
+	\item Learn scientific work style
+	\item Review report, write an own afterwards
+	\item Transfer a topic to another area (frontend engineering)
+	\item To do so, Markus came up with an interesting paper:
+}
+
 \begin{frame}[focus]
 	\emph{``On the Positive Effect of Reactive Programming on Software Comprehension: An Empirical Study''}
 	\\\bigskip
 	\small{Salvaneschi et al. \cite{7827078}}
 \end{frame}
 
+\note[itemize]{
+	\item On the positive effect of reactive programming on software comprehension
+	\item An empirical study
+	\item Research Group around Guido Salvaneschi
+}
 
 \subsection*{Research Questions}
 
@@ -51,6 +73,14 @@
 	\end{enumerate}
 \end{frame}
 
+\note[itemize]{
+	\item Our own goals are formalized by a total of 8 research Questions
+	\item The first set investigates in how well Salvaneschi et al. did their work:
+	\item Which empirical research methods, approaches and concepts were applied
+	\item Are these research methods, approaches and concepts applied well, what could have been done better?
+	\item Do they meet FAIR principles?
+}
+
 \begin{frame}{RQ2: Software Engineering Principles}
 	\begin{itemize}
 		\item[RQ2.1] \textbf{How} do Salvaneschi et al. \cite{7827078} \textbf{define RP and OOP}?\bigskip
@@ -60,15 +90,35 @@
 	\end{itemize}
 \end{frame}
 
+\note[itemize]{
+	\item The second set looks on the following questions related to software engineering:
+	\item How does the group define RP and OOP?
+	\item When should RP be applied, and when not?
+	\item Where could a future research project continue?
+}
+
 
 \section{Terminology}
+
+\note[itemize]{
+	\item Quick suymmary on the most important terminology
+}
+
 \subsection*{Empirical Software Engineering}
 \begin{frame}{Empirical Software Engineering}
 	\begin{itemize}
-		\item Lack of scientific and analytical formalism\bigskip
-		\item Apply empirical research methods instead
+		\item \textbf{Lack of} scientific and analytical \textbf{formalism}\bigskip
+		\item \textbf{Apply empirical} research \textbf{methods} instead
 	\end{itemize}
 \end{frame}
+
+\note[itemize]{
+	\item Software engineering lacks formalism
+	\item No clear "correct" or "wrong" way of doing software engineering
+	\item Idea: Apply empirical research principles
+	\item Example: Reasearch Cycle: Plan - Do - Check ... Agile anyone?\bigskip
+	\item This brings us to Design sciences:
+}
 
 \subsection*{Design Sciences}
 \begin{frame}{Design Sciences \cite{wieringa}}
@@ -83,6 +133,14 @@
 	\end{figure}
 \end{frame}
 
+\note[itemize]{
+	\item A "meta" research framework
+	\item Design a research method
+	\item Research on an artifact on a specific context
+	\item Evaluate answers, check stakeholder requirements\bigskip
+	\item Reiterate until stakeholders satisfied
+}
+
 \subsection*{FAIR Research Principles}
 \begin{frame}{FAIR Research Principles \cite{wilkinson:2016} \cite{2019arXiv190805986H}}
 	\begin{itemize}
@@ -93,40 +151,52 @@
 	\end{itemize}
 \end{frame}
 
+\note[itemize]{
+	\item Wilkinson
+	\item A checklist to maximise the value an outcome of a research project\bigskip
+	\item Allow results to be found (keywords, unique identifiers, ...)
+	\item Make things easily accessible (archives, librarires, tech stack)
+	\item Use formats accepted in a specific expert group, provide schema information
+	\item Provide as much information as possible so results can be reproduced\bigskip
+	\item Hasselbring: Specific recommendations for software engineering research
+	\item Example: Versioning Software Objects along with Research Report
+}
+
 \subsection*{Reactive Programming}
-\begin{frame}{Reactive Programming I}
-	\begin{itemize}
-		\item \textbf{Declarative} programming paradigm\bigskip
-		\item Originated in functional programming\bigskip
-		\item API to describe \textbf{values}, their \textbf{transformation} and how they \textbf{depend} on each other over time\bigskip
-		\item \textbf{Runtime} environment maintaining \textbf{consistency}
-	\end{itemize}
+\begin{frame}{Reactive Programming}
+	\begin{columns}[t, onlytextwidth]
+		\column{0.5\textwidth}
+			\begin{itemize}
+				\item \textbf{Declarative} programming paradigm\bigskip
+				\item Originated in \textbf{functional} programming\bigskip
+				\item API to describe \textbf{values}, their \textbf{transformation} and how they \textbf{depend} on each other over time\bigskip
+				\item \textbf{Runtime} environment maintaining \textbf{consistency}
+			\end{itemize}
+		\column{0.5\textwidth}
+			\textbf{TODO Create Graphic}
+	\end{columns}
 \end{frame}
 
-\begin{frame}[fragile=singleslide]{Reactive Programming II}
-	\textbf{TODO: Create Graphic}
-
-	\begin{block}{Reactive Programming with BaconJS\footnote{\url{http://baconjs.github.io/}}}
-		\begin{minted}{JavaScript}
-			const currentDateString = Bacon
-				.fromPoll(1000, () => new Date())
-				.map(d => d.toISOString());
-		\end{minted}
-	\end{block}
-
-\end{frame}
+\note[itemize]{
+	\item Reactive programming is a declarative programming paradigm
+	\item Describe what to do, not "how" to do it
+	\item Originated in functional programming, first appeared with Haskell\bigskip
+	\item We describe values, how they depend on each other
+	\item And how they are transformed over time
+	\item RP usually requires a runtime environment establishing consistency of values
+}
 
 \subsection*{Observer Design Pattern}
 \begin{frame}{Observer Design Pattern \cite{gamma1995design}}
 	\begin{columns}[t, onlytextwidth]
 		\column{0.5\textwidth}
-			\begin{itemize}
-				\item \textbf{Decouple} components while \textbf{maintaining communication} between them\bigskip
-				\item Originated in object oriented programming\bigskip
-			\end{itemize}
+			\textbf{TODO Create Graphic}
 
 		\column{0.5\textwidth}
-			\textbf{TODO Create Graphic}
+			\begin{itemize}
+				\item \textbf{Decouple} components while \textbf{maintaining communication} between them\bigskip
+				\item Originated in \textbf{object oriented} programming\bigskip
+			\end{itemize}
 	\end{columns}
 \end{frame}
 
@@ -134,11 +204,21 @@
 
 \section{Summary of Salvaneschi et al.}
 
+\note[itemize]{
+	\item Lets begin now with the main part
+	\item See what Salvaneschi and his reserarch group worked on...
+}
+
 \begin{frame}[focus]
 	``\emph{(...) it has been repeatedly argued that RP greatly improves (...) comprehension of software.}''
 	\\\bigskip
 	\small{Salvaneschi et al. \cite{7827078}}
 \end{frame}
+
+\note[itemize]{
+	\item This is the main thesis of Salvaneschi et al
+	\item They build four research questions:
+}
 
 \begin{frame}{Research Questions \cite{7827078}}
 	\begin{itemize}
@@ -149,19 +229,22 @@
 	\end{itemize}
 \end{frame}
 
-\subsection*{Study Design}
-\begin{frame}{Study Design}
+\note[itemize]{
+	\item Does RP have an impact on how correct a program is comprehended?
+	\item Are there differences in how much time is required to comprehend an RP program?
+	\item Does RP need a higher or lower skill level to correctly understand a programs source code?
+	\item Can we reason why there are differences between comprehending OOP and RP code?\bigskip
+	\item What did they do?
 	\begin{itemize}
-		\item Subject \textbf{population} of a total of \textbf{127} students\bigskip
-		\item Preparatory, quantitative programming \textbf{skill level survey}\bigskip
-		\item \textbf{Controlled experiment} with two groups: RP vs. OOP\bigskip
-		\item Quantitative/qualitative \textbf{survey} to collect \textbf{personal opinion}
+		\item The group set up a controlled experiment
+		\item Total of 127 students participated
+		\item Preparatory skill level survey (quantitative)
+		\item Additional Quantitative and qualitative survey to capture personal opinion afterwards
 	\end{itemize}
-\end{frame}
+}
 
 \subsection*{Study Results}
 \begin{frame}{Study Results}
-
 	\begin{block}{Finding 1: \textbf{Correctness}}
 		RP \textbf{increases} the \textbf{correctness} of program \textbf{comprehension}
 	\end{block}
@@ -173,17 +256,25 @@
 	\end{block}
 \end{frame}
 
-\subsection*{Outlook}
-\begin{frame}{Outlook}
-	\begin{enumerate}
-		\item \textbf{Interpretation} of collected results in context of \textbf{psychological research}\bigskip
-		\item \textbf{Impact} of \textbf{language design} on RP \textbf{comprehensibility}\bigskip
-		\item \textbf{Improvements} on \textbf{IDE support} for development of \textbf{reactive applications}
-	\end{enumerate}
-\end{frame}
+\note[itemize]{
+	\item Their work resulted in, along others, three main findings:
+	\begin{itemize}
+		\item \textbf{Correctness}: RP code was better to understand than its OOP equivalent
+		\item \textbf{Time}: RP code did not require more time to understand
+		\item \textbf{Skill level}: Overall, RP code was easier to understand, regardless of the individuals personal programming skill level
+	\end{itemize}
+}
 
 
 \section{Review of Salvaneschi et al.}
+\note[itemize]{
+	\item Back to our own research questions
+	\item I will present you two score cards
+	\item One card per question set
+	\item Each giving an overview how well Salvaneshi et al worked in the respective area
+}
+
+
 \subsection*{Research Principle Score Card}
 \begin{frame}{Research Principle Score Card}
 	\begin{exampleblock}{Empirical Software Engineering}
@@ -201,6 +292,15 @@
 		Lack of \textbf{complementary information} violates \textbf{Reusability} principle
 	\end{alertblock}
 \end{frame}
+
+\note[itemize]{
+	\item \textbf{Empirical Software Engineering}: Well done, nothing to complain\bigskip
+	\item \textbf{Design Sciences}: No clear evidence for use
+	\item This is one study of many... Did they use Design Sciences for their high level planning?\bigskip
+	\item \textbf{FAIR}: Good, except: Complementary information is missing
+	\item Survey Tool and full code samples would improve value significantly
+}
+
 
 \subsection*{Software Engineering Score Card}
 \begin{frame}{Software Engineering Score Card}
@@ -222,8 +322,23 @@
 	\end{alertblock}
 \end{frame}
 
+\note[itemize]{
+	\item \textbf{Reactice Applications}: Introduction of classification schema\bigskip
+	\item \textbf{Reactive Programming}: Good introduction to the subject
+	\item Good examples in Scala using REScala\bigskip
+	\item \textbf{OOP}: Short introduction compared to RP.
+	\item Sad: Reduced to observer pattern, used as synonym throughout the work
+}
 
-\section*{Application in\texorpdfstring{\\}{ }Frontend Engineering}
+
+\section{Application in Frontend Engineering}
+\note[itemize]{
+	\item Classification system introduced by Salvaneschi et al
+	\item Transfer to two own examples
+	\item We left out "graphical animation" by intention
+	\item (Efficient) Animations in frontends usually done using CSS animations
+}
+
 
 \subsection*{Synthetic Application}
 \begin{frame}{Synthetic Application: Scenario}
@@ -241,6 +356,14 @@
 	\end{columns}
 \end{frame}
 
+\note[itemize]{
+	\item Scenario: Show a users profile information with avatar
+	\item Fetch an combine two remote data sources
+	\item To fetch avatar, profile is required to be present
+	\item This is a synthetic application: Model data flow
+	\item With reactive programming, this looks like:
+}
+
 \begin{frame}[fragile=singleslide]{Synthetic Application: Reactive Programming}
 	\begin{block}{Modelling Data Flow with Promises}
 		\begin{minted}{JavaScript}
@@ -254,6 +377,10 @@
 	\end{block}
 \end{frame}
 
+\note[itemize]{
+	\item Using Promises, this is straighforward
+}
+
 \begin{frame}[fragile=singleslide]{Synthetic Application: Observer Pattern}
 	\begin{block}{Modelling Data Flow with Observer Design Pattern \cite{gamma1995design} I}
 		\begin{minted}{JavaScript}
@@ -263,12 +390,17 @@
 	\end{block}
 \end{frame}
 
+\note[itemize]{
+	\item With an Observer after Gamma et al
+	\item Start with the definition of two observables for profile and avatar
+}
+
 \begin{frame}[fragile=singleslide]{Synthetic Application: Observer Pattern}
 	\begin{block}{Modelling Data Flow with Observer Design Pattern \cite{gamma1995design} II}
 		\begin{minted}{JavaScript}
 			profileObservable.addObserver(async () => {
-				const a = await fetchAvatar(profileObservable.value);
-				avatarObservable.value = a;
+				const avatar = await fetchAvatar(profileObservable.value);
+				avatarObservable.value = avatar;
 				avatarObservable.notify();
 			});
 
@@ -282,6 +414,12 @@
 	\end{block}
 \end{frame}
 
+\note[itemize]{
+	\item Define behavior for each observable
+	\item What happens when profile arrives?
+	\item What happens when avatar arrives?
+}
+
 \begin{frame}[fragile=singleslide]{Synthetic Application: Observer Pattern}
 	\begin{block}{Modelling Data Flow with Observer Design Pattern \cite{gamma1995design} III}
 		\begin{minted}{JavaScript}
@@ -293,6 +431,11 @@
 	\end{block}
 \end{frame}
 
+\note[itemize]{
+	\item Finally kick code into action
+	\item Fetch profile and notify observers
+}
+
 \begin{frame}{Synthetic Application: Key Findings}
 	\begin{itemize}
 		\item \textbf{Key findings} in favor of reactive programming by Salvaneschi et al. \cite{7827078} \textbf{confirmed}:\smallskip
@@ -303,6 +446,14 @@
 		\item \textbf{Reactive programming} is \textbf{better} suited for the implementation of \textbf{synthetic applications}
 	\end{itemize}
 \end{frame}
+
+\note[itemize]{
+	\item You might already guess\dots
+	\item We verified key finding by Salvaneschi et al
+	\item RP requires less boilerplate code
+	\item Mental model more or less 1 to 1 in code
+	\item At least for syntehtic applications
+}
 
 \subsection*{Interactive Application}
 \begin{frame}[t]{Interactive Application}
@@ -319,6 +470,13 @@
 	\end{columns}
 \end{frame}
 
+\note[itemize]{
+	\item Second scenario rather simple
+	\item React on clicks on a button
+	\item Trigger an action accordinlgy
+	\item Here: Log the current date and time in a log
+}
+
 \begin{frame}[fragile=singleslide]{Interactive Application: Reactive Programming}
 	\begin{block}{Handle User Interaction with BaconJS}
 		\begin{minted}{JavaScript}
@@ -329,6 +487,13 @@
 	\end{block}
 \end{frame}
 
+\note[itemize]{
+	\item Reactive Programming
+	\item BaconJS runtime
+	\item Hook up to button click events
+	\item Get current time in a map combinator
+	\item Pass time in onValue side effect
+}
 
 \begin{frame}[fragile=singleslide]{Interactive Application: Observer Pattern}
 	\begin{block}{Handle User Interaction with EventTarget Interface}
@@ -341,6 +506,11 @@
 	\end{block}
 \end{frame}
 
+\note[itemize]{
+	\item Buttons implement the DOMs EventTarget interface
+	\item Register an observer to the buttons click events
+}
+
 \begin{frame}{Interactive Application: Key Findings}
 	\begin{itemize}
 		\item \textbf{Both} solutions have similar \textbf{small code footprint}\bigskip
@@ -349,16 +519,41 @@
 	\end{itemize}
 \end{frame}
 
+\note[itemize]{
+	\item Not much different using RP or observers
+	\item Why? EventTarget DOM API is already observer based
+	\item Even worse: Hidden complexity through RP runtime
+	\item Use the right tool for the right thing (TM)
+}
+
 \subsection*{Criteria Catalog}
 \begin{frame}[focus]
 	When Should I\\Use What?!
 \end{frame}
+
+\note[itemize]{
+	\item Unsatisfying outcome
+	\item No recipe
+	\item If A then RP, else Observer
+	\item What can we do?
+	\item We dont know
+	\item But we might give a good starting point when evaluating between RP and the observer
+}
 
 \begin{frame}[fragile=singleslide]{Criteria Catalog}
 	\begin{figure}
 		\includegraphics[width=\textwidth]{assets/slides/criteria-catalog.png}
 	\end{figure}
 \end{frame}
+
+\note[itemize]{
+	\item Interesting Questions to ask:
+	\item \textbf{Cardinality}: How many components consume values?
+	\item \textbf{Change Frequency}: How many values are expected to be emitted over time?
+	\item \textbf{Stimuli Source}: Where do values come from? A remote data source? Triggered by users? What APIs are available for these sources? What about fail tolerance?
+	\item \textbf{Testability}: What test methods do you want to apply? Blackbox? Break down larger components?
+	\item \textbf{Transformation}: Do you need to combine values from multiple sources? How are these combined? How do you need to transform them?
+}
 
 \section{Outlook}
 \begin{frame}{Future Research Suggestions}
@@ -369,6 +564,13 @@
 	\end{enumerate}
 \end{frame}
 
+\note[itemize]{
+	\item How could future research invest?\bigskip
+	\item \textbf{Empirical Study}: Verify presented two scenarios and criteria catalog
+	\item Yield valuable output for projects facing a decision\bigskip
+	\item \textbf{Explore} in W3C Web Animation API: RP meets efficient browser animations\bigskip
+	\item As suggested by Salvaneschi et al: Research in improving RP \textbf{tool support} (Debugging, IDEs)
+}
 
 \section{Conclusion}
 \begin{frame}{Recap}
@@ -378,6 +580,13 @@
 		\item \textbf{Suggested three} potential \textbf{topics} for future research
 	\end{itemize}
 \end{frame}
+
+\note[itemize]{
+	\item We showed:
+	\item Summary and review
+	\item Transferred to Frontend Engineeringh
+	\item Suggested Three Follow Up Topics for Future Research
+}
 
 \begin{frame}
 	\begin{center}

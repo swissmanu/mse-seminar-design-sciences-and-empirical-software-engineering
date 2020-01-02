@@ -7,3 +7,9 @@
 - [Publish v1.0.1](https://github.com/swissmanu/mse-seminar-reactive-applications-in-frontend-engineering-today/releases/tag/v1.0.1)
 - [Prepublish v0.2.0](https://github.com/swissmanu/mse-seminar-reactive-applications-in-frontend-engineering-today/releases/tag/v0.3.0-prepublish)
 - [Draft v0.1.0](https://github.com/swissmanu/mse-seminar-reactive-applications-in-frontend-engineering-today/releases/tag/v0.2.0-draft)
+
+## Snippets
+
+```bash
+dspdfviewer slides.pdf
+```
