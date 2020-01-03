@@ -1,8 +1,11 @@
 \documentclass{beamer}
+% \documentclass[handout]{beamer}
 \usepackage{pgfpages}
 \setbeameroption{show notes on second screen}
+% \pgfpagesuselayout{2 on 1}[a4paper,border shrink=10mm]
 
 \usepackage{ccicons}
+\usepackage{fontawesome}
 \usepackage{hyperref}
 \usepackage{minted}
 
@@ -27,10 +30,6 @@
 	\item Welcome To My Talk
 }
 
-% \begin{frame}{Overview}
-% 	\tableofcontents
-% \end{frame}
-
 \section*{Welcome}
 
 \begin{frame}{Motivation and Goals}
@@ -47,7 +46,7 @@
 	\item Given goals summarized:
 	\item Learn scientific work style
 	\item Review report, write an own afterwards
-	\item Transfer a topic to another area (frontend engineering)
+	\item Transfer a topic to another area (frontend engineering)\bigskip
 	\item To do so, Markus came up with an interesting paper:
 }
 
@@ -74,7 +73,7 @@
 \end{frame}
 
 \note[itemize]{
-	\item Our own goals are formalized by a total of 8 research Questions
+	\item Our own goals are formalized by a total of 7 research Questions
 	\item The first set investigates in how well Salvaneschi et al. did their work:
 	\item Which empirical research methods, approaches and concepts were applied
 	\item Are these research methods, approaches and concepts applied well, what could have been done better?
@@ -96,111 +95,6 @@
 	\item When should RP be applied, and when not?
 	\item Where could a future research project continue?
 }
-
-
-\section{Terminology}
-
-\note[itemize]{
-	\item Quick suymmary on the most important terminology
-}
-
-\subsection*{Empirical Software Engineering}
-\begin{frame}{Empirical Software Engineering}
-	\begin{itemize}
-		\item \textbf{Lack of} scientific and analytical \textbf{formalism}\bigskip
-		\item \textbf{Apply empirical} research \textbf{methods} instead
-	\end{itemize}
-\end{frame}
-
-\note[itemize]{
-	\item Software engineering lacks formalism
-	\item No clear "correct" or "wrong" way of doing software engineering
-	\item Idea: Apply empirical research principles
-	\item Example: Reasearch Cycle: Plan - Do - Check ... Agile anyone?\bigskip
-	\item This brings us to Design sciences:
-}
-
-\subsection*{Design Sciences}
-\begin{frame}{Design Sciences \cite{wieringa}}
-	\begin{itemize}
-		\item Research \textbf{principle} to \textbf{grow} research \textbf{projects}\bigskip
-		\item \textbf{Design} and \textbf{investigate} on \textbf{artifacts} in a specific \textbf{context}\bigskip
-		\item \textbf{Iterate} until \textbf{stakeholders} are satisfied
-	\end{itemize}
-
-	\begin{figure}
-		\includegraphics[width=.8\textwidth]{assets/slides/design-sciences-process.png}
-	\end{figure}
-\end{frame}
-
-\note[itemize]{
-	\item A "meta" research framework
-	\item Design a research method
-	\item Research on an artifact on a specific context
-	\item Evaluate answers, check stakeholder requirements\bigskip
-	\item Reiterate until stakeholders satisfied
-}
-
-\subsection*{FAIR Research Principles}
-\begin{frame}{FAIR Research Principles \cite{wilkinson:2016} \cite{2019arXiv190805986H}}
-	\begin{itemize}
-		\item \textbf{F}indability\bigskip
-		\item \textbf{A}ccessibility\bigskip
-		\item \textbf{I}nteroperability\bigskip
-		\item \textbf{R}eusability
-	\end{itemize}
-\end{frame}
-
-\note[itemize]{
-	\item Wilkinson
-	\item A checklist to maximise the value an outcome of a research project\bigskip
-	\item Allow results to be found (keywords, unique identifiers, ...)
-	\item Make things easily accessible (archives, librarires, tech stack)
-	\item Use formats accepted in a specific expert group, provide schema information
-	\item Provide as much information as possible so results can be reproduced\bigskip
-	\item Hasselbring: Specific recommendations for software engineering research
-	\item Example: Versioning Software Objects along with Research Report
-}
-
-\subsection*{Reactive Programming}
-\begin{frame}{Reactive Programming}
-	\begin{columns}[t, onlytextwidth]
-		\column{0.5\textwidth}
-			\begin{itemize}
-				\item \textbf{Declarative} programming paradigm\bigskip
-				\item Originated in \textbf{functional} programming\bigskip
-				\item API to describe \textbf{values}, their \textbf{transformation} and how they \textbf{depend} on each other over time\bigskip
-				\item \textbf{Runtime} environment maintaining \textbf{consistency}
-			\end{itemize}
-		\column{0.5\textwidth}
-			\textbf{TODO Create Graphic}
-	\end{columns}
-\end{frame}
-
-\note[itemize]{
-	\item Reactive programming is a declarative programming paradigm
-	\item Describe what to do, not "how" to do it
-	\item Originated in functional programming, first appeared with Haskell\bigskip
-	\item We describe values, how they depend on each other
-	\item And how they are transformed over time
-	\item RP usually requires a runtime environment establishing consistency of values
-}
-
-\subsection*{Observer Design Pattern}
-\begin{frame}{Observer Design Pattern \cite{gamma1995design}}
-	\begin{columns}[t, onlytextwidth]
-		\column{0.5\textwidth}
-			\textbf{TODO Create Graphic}
-
-		\column{0.5\textwidth}
-			\begin{itemize}
-				\item \textbf{Decouple} components while \textbf{maintaining communication} between them\bigskip
-				\item Originated in \textbf{object oriented} programming\bigskip
-			\end{itemize}
-	\end{columns}
-\end{frame}
-
-
 
 \section{Summary of Salvaneschi et al.}
 
@@ -277,18 +171,18 @@
 
 \subsection*{Research Principle Score Card}
 \begin{frame}{Research Principle Score Card}
-	\begin{exampleblock}{Empirical Software Engineering}
+	\begin{exampleblock}{\faicon{thumbs-o-up} Empirical Software Engineering}
 		\begin{itemize}
 			\item \textbf{Careful} study \textbf{setup} and \textbf{execution}
 			\item \textbf{Transparent} description of \textbf{threats to validity}
 		\end{itemize}
 	\end{exampleblock}
 
-	\begin{alertblock}{Design Sciences}
+	\begin{alertblock}{\faicon{thumbs-o-down} Design Sciences}
 		\textbf{No evidence} for the \textbf{application} of \textbf{design sciences} found
 	\end{alertblock}
 
-	\begin{alertblock}{FAIR Research Principles}
+	\begin{alertblock}{\faicon{thumbs-o-down} FAIR Research Principles}
 		Lack of \textbf{complementary information} violates \textbf{Reusability} principle
 	\end{alertblock}
 \end{frame}
@@ -304,17 +198,17 @@
 
 \subsection*{Software Engineering Score Card}
 \begin{frame}{Software Engineering Score Card}
-	\begin{exampleblock}{Reactive Applications}
+	\begin{exampleblock}{\faicon{thumbs-o-up} Reactive Applications}
 		Introduction of classification schema: \textbf{Synthetic} and \textbf{interactive} applications, \textbf{graphical animations}
 	\end{exampleblock}
-	\begin{exampleblock}{Reactive Programming}
+	\begin{exampleblock}{\faicon{thumbs-o-up} Reactive Programming}
 		\begin{itemize}
 			\item Good overview noting \textbf{origins} in FP and \textbf{recent} development
 			\item \textbf{Examples} using Scala
 		\end{itemize}
 	\end{exampleblock}
 
-	\begin{alertblock}{Object Oriented Programming}
+	\begin{alertblock}{\faicon{thumbs-o-down} Object Oriented Programming}
 		\begin{itemize}
 			\item \textbf{Limited overview} compared to RP
 			\item \textbf{Reduced} to Observer Pattern, still \textbf{used synonymously}
