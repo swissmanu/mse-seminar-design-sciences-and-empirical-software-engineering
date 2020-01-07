@@ -27,7 +27,8 @@
 \end{frame}
 
 \note[itemize]{
-	\item Welcome To My Talk
+	\item Welcome To My Talk titled:
+	\item Reactive Programming in Frontend Engineering Today
 }
 
 \section*{Welcome}
@@ -43,10 +44,11 @@
 
 \note[itemize]{
 	\item This was my first seminar paper done
-	\item Given goals summarized:
-	\item Learn scientific work style
-	\item Review report, write an own afterwards
-	\item Transfer a topic to another area (frontend engineering)\bigskip
+	\item My goals:
+	\item \textbf{Learn} scientific work style
+	\item \textbf{Review} report
+	\item \textbf{Transfer} a topic to frontend engineering
+	\item \textbf{Write and present} my own research report\bigskip
 	\item To do so, Markus came up with an interesting paper:
 }
 
@@ -60,6 +62,7 @@
 	\item On the positive effect of reactive programming on software comprehension
 	\item An empirical study
 	\item Research Group around Guido Salvaneschi
+	\item 2015\bigskip
 }
 
 \subsection*{Research Questions}
@@ -73,11 +76,12 @@
 \end{frame}
 
 \note[itemize]{
-	\item Our own goals are formalized by a total of 7 research Questions
-	\item The first set investigates in how well Salvaneschi et al. did their work:
-	\item Which empirical research methods, approaches and concepts were applied
-	\item Are these research methods, approaches and concepts applied well, what could have been done better?
-	\item Do they meet FAIR principles?
+	\item \textbf{Answer} 7 research questions
+	\item Grouped in \textbf{2 sets} of research questions
+	\item First: Research Principles
+	\item Which \textbf{empirical research methods}?
+	\item Are they \textbf{applied well}?
+	\item Do they meet \textbf{FAIR} principles?
 }
 
 \begin{frame}{RQ2: Software Engineering Principles}
@@ -90,17 +94,17 @@
 \end{frame}
 
 \note[itemize]{
-	\item The second set looks on the following questions related to software engineering:
-	\item How does the group define RP and OOP?
-	\item When should RP be applied, and when not?
-	\item Where could a future research project continue?
+	\item Second: \textbf{Empirical Software engineering}:
+	\item Definition of \textbf{RP and OOP}?
+	\item When use \textbf{RP}?
+	\item \textbf{Future research}?
 }
 
 \section{Summary of Salvaneschi et al.}
 
 \note[itemize]{
-	\item Lets begin now with the main part
-	\item See what Salvaneschi and his reserarch group worked on...
+	\item Lets begin now with the first part
+	\item Salvaneschi et al based on \textbf{thesis}:
 }
 
 \begin{frame}[focus]
@@ -110,8 +114,7 @@
 \end{frame}
 
 \note[itemize]{
-	\item This is the main thesis of Salvaneschi et al
-	\item They build four research questions:
+	\item Developed four research questions:
 }
 
 \begin{frame}{Research Questions \cite{7827078}}
@@ -124,16 +127,16 @@
 \end{frame}
 
 \note[itemize]{
-	\item Does RP have an impact on how correct a program is comprehended?
-	\item Are there differences in how much time is required to comprehend an RP program?
-	\item Does RP need a higher or lower skill level to correctly understand a programs source code?
-	\item Can we reason why there are differences between comprehending OOP and RP code?\bigskip
+	\item RP impact on \textbf{correctness} of comprehension?
+	\item Differences in how much \textbf{time} to comprehend RP?
+	\item higher/lower \textbf{skill level} to correctly understand?
+	\item Is there a \textbf{reason} in potential differences?\bigskip
 	\item What did they do?
 	\begin{itemize}
 		\item The group set up a controlled experiment
 		\item Total of 127 students participated
 		\item Preparatory skill level survey (quantitative)
-		\item Additional Quantitative and qualitative survey to capture personal opinion afterwards
+		\item Survey to capture personal opinion afterwards
 	\end{itemize}
 }
 
@@ -151,23 +154,18 @@
 \end{frame}
 
 \note[itemize]{
-	\item Their work resulted in, along others, three main findings:
-	\begin{itemize}
-		\item \textbf{Correctness}: RP code was better to understand than its OOP equivalent
-		\item \textbf{Time}: RP code did not require more time to understand
-		\item \textbf{Skill level}: Overall, RP code was easier to understand, regardless of the individuals personal programming skill level
-	\end{itemize}
+	\item \textbf{Correctness}: RP code was better to understand than its OOP equivalent
+	\item \textbf{Time}: RP code did not require more time to understand
+	\item \textbf{Skill level}: Overall, RP code was easier to understand, regardless of the individuals personal programming skill level
 }
 
 
 \section{Review of Salvaneschi et al.}
 \note[itemize]{
-	\item Back to our own research questions
-	\item I will present you two score cards
+	\item In order to review Salvaneshi et al.:
+	\item Present you two score cards
 	\item One card per question set
-	\item Each giving an overview how well Salvaneshi et al worked in the respective area
 }
-
 
 \subsection*{Research Principle Score Card}
 \begin{frame}{Research Principle Score Card}
@@ -251,10 +249,10 @@
 \end{frame}
 
 \note[itemize]{
+	\item Synthetic application: Model data flow
 	\item Scenario: Show a users profile information with avatar
 	\item Fetch an combine two remote data sources
-	\item To fetch avatar, profile is required to be present
-	\item This is a synthetic application: Model data flow
+	\item To fetch avatar, profile is required to be present\bigskip
 	\item With reactive programming, this looks like:
 }
 
